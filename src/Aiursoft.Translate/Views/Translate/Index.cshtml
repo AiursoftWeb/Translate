@@ -135,15 +135,15 @@
                     }
                 };
 
-                // Initial detection
-                updateTargetLanguage(sourceEditor.getValue());
-
-                // Detect on content change (debounced)
+                // Detect language only once — the first time the user edits/pastes content.
+                let languageAutoDetected = false;
                 let detectTimeout;
                 sourceEditor.onDidChangeModelContent(() => {
+                    if (languageAutoDetected) return;
                     clearTimeout(detectTimeout);
                     detectTimeout = setTimeout(() => {
                         updateTargetLanguage(sourceEditor.getValue());
+                        languageAutoDetected = true;
                     }, 1000);
                 });
 
