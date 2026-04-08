@@ -1,4 +1,3 @@
-using Aiursoft.Translate.Authorization;
 using Aiursoft.Translate.Models.TranslateViewModels;
 using Aiursoft.Translate.Services;
 using Aiursoft.Dotlang.Shared;
@@ -31,7 +30,7 @@ public class TranslateController(OllamaBasedTranslatorEngine translator) : Contr
     }
 
     [HttpPost]
-    [Authorize(Policy = AppPermissionNames.CanTranslate)]
+    [AllowAnonymous]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Translate([FromBody] TranslateRequest request)
     {
@@ -52,7 +51,7 @@ public class TranslateController(OllamaBasedTranslatorEngine translator) : Contr
     }
 
     [HttpPost]
-    [Authorize(Policy = AppPermissionNames.CanTranslate)]
+    [AllowAnonymous]
     [ValidateAntiForgeryToken]
     public async Task TranslateStream([FromBody] TranslateRequest request)
     {
