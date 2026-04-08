@@ -1,10 +1,13 @@
 using Aiursoft.CSTools.Tools;
+using Aiursoft.Canon;
 using Aiursoft.Canon.TaskQueue;
 using Aiursoft.Canon.BackgroundJobs;
 using Aiursoft.Canon.ScheduledTasks;
 using Aiursoft.DbTools.Switchable;
 using Aiursoft.Scanner;
+using Aiursoft.GptClient.Services;
 using Aiursoft.Translate.Configuration;
+using Aiursoft.Translate.Services;
 using Aiursoft.WebTools.Abstractions.Models;
 using Aiursoft.Translate.InMemory;
 using Aiursoft.Translate.MySql;
@@ -28,6 +31,7 @@ public class Startup : IWebStartup
     {
         // AppSettings.
         services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
+        services.Configure<OpenAIConfiguration>(configuration.GetSection("OpenAI"));
 
         // Relational database
         var (connectionString, dbType, allowCache) = configuration.GetDbSettings();
@@ -52,8 +56,13 @@ public class Startup : IWebStartup
         // Services
         services.AddMemoryCache();
         services.AddHttpClient();
+        services.AddTaskCanon();
         services.AddAssemblyDependencies(typeof(Startup).Assembly);
         services.AddSingleton<NavigationState<Startup>>();
+        services.AddScoped<ChatClient>();
+        services.AddScoped<IOllamaService, OllamaService>();
+        services.AddScoped<MarkdownShredder>();
+        services.AddScoped<OllamaBasedTranslatorEngine>();
 
         // Background job infrastructure
         services.AddTaskQueueEngine();
@@ -86,7 +95,10 @@ public class Startup : IWebStartup
     {
         app.UseExceptionHandler("/Error/Code500");
         app.UseStatusCodePagesWithReExecute("/Error/Code{0}");
-        app.UseStaticFiles();
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            ServeUnknownFileTypes = true
+        });
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();

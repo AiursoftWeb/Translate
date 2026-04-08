@@ -1,0 +1,176 @@
+@using Aiursoft.Translate.Models.TranslateViewModels
+@using Aiursoft.Translate.Controllers
+@using Aiursoft.WebTools.OfficialPlugins
+@model IndexViewModel
+@{
+    Layout = "~/Layout/UiStackLayout.cshtml";
+    var isDarkMode = Context.Request.Cookies[ThemeController.ThemeCookieKey] == true.ToString();
+}
+
+<div class="d-flex flex-column h-100 pb-0">
+    <!-- Unified Sticky Toolbar -->
+    <div class="sticky-top bg-white border-bottom py-2 px-3 mb-0 d-flex align-items-center justify-content-between z-3" style="box-shadow: 0 2px 4px rgba(0,0,0,.04);">
+        <!-- Left: Branding -->
+        <div class="d-flex align-items-center gap-3">
+             <h4 class="mb-0 fw-bold"><i class="align-middle me-1" data-lucide="languages"></i> @Localizer["AI Translator"]</h4>
+        </div>
+
+        <!-- Middle: Options -->
+        <div class="flex-grow-1 px-4 text-center d-flex align-items-center justify-content-center gap-2">
+            <label class="form-label mb-0 d-none d-md-inline">@Localizer["Target Language:"]</label>
+            <select id="targetLanguage" class="form-select form-select-sm shadow-sm" style="max-width: 250px;">
+                @foreach (var culture in LocalizationPlugin.SupportedCultures)
+                {
+                    <option value="@culture.Key">@culture.Value (@culture.Key)</option>
+                }
+            </select>
+        </div>
+
+        <!-- Right: Actions -->
+        <div class="d-flex align-items-center gap-2">
+            <button type="button" id="translateBtn" class="btn btn-sm btn-primary shadow-sm px-3 fw-bold">
+                <span id="btnText"><i class="align-middle me-1" data-lucide="zap"></i> @Localizer["Translate"]</span>
+                <span id="btnLoading" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="row flex-grow-1 gx-0" style="height: calc(100vh - 120px); min-height: 400px; background-color: #F9FAFB;">
+
+        @* --- Left Column: Source Editor --- *@
+        <div class="col-lg-6 h-100 border-end" style="border-color: #eaecef !important;">
+            <div class="h-100 d-flex flex-column bg-white">
+                <div class="flex-grow-1 position-relative editor-wrapper">
+                    <div id="source-editor-container" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></div>
+                </div>
+            </div>
+        </div>
+
+        @* --- Right Column: Result Editor --- *@
+        <div class="col-lg-6 h-100 border-end" style="border-color: #eaecef !important;">
+             <div class="h-100 d-flex flex-column bg-white">
+                <div class="flex-grow-1 position-relative editor-wrapper">
+                    <div id="result-editor-container" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles {
+    <link rel="stylesheet" href="~/node_modules/@@fontsource/cascadia-code/index.css" asp-append-version="true" />
+    <style>
+        main.content {
+            padding: 0 !important;
+        }
+        /* Toolbar adjustments for dark mode */
+        body[data-bs-theme="dark"] .sticky-top {
+            background-color: #222e3c !important; /* AdminKit dark background */
+            border-bottom: 1px solid #323d4b !important;
+        }
+        body[data-bs-theme="dark"] .bg-white {
+            background-color: #222e3c !important;
+        }
+        body[data-bs-theme="dark"] .border-end {
+            border-color: #323d4b !important;
+        }
+        
+        .editor-wrapper {
+            background-color: #fff;
+        }
+        
+        body[data-bs-theme="dark"] .editor-wrapper {
+            background-color: #1e2530 !important;
+        }
+
+        .sticky-top {
+            top: 0;
+            position: sticky;
+        }
+    </style>
+}
+
+@section scripts {
+    <script>var require = { paths: { 'vs': '/node_modules/monaco-editor/min/vs' } };</script>
+    <script src="~/node_modules/monaco-editor/min/vs/loader.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            require(['vs/editor/editor.main'], function () {
+                const monacoTheme = '@(isDarkMode ? "vs-dark" : "vs")';
+                const editorOptions = {
+                    language: 'markdown',
+                    theme: monacoTheme,
+                    automaticLayout: true,
+                    wordWrap: 'on',
+                    'semanticHighlighting.enabled': true,
+                    fontFamily: "'Cascadia Code', 'Consolas', 'Courier New', monospace",
+                    fontSize: 14,
+                    fontLigatures: true,
+                    minimap: { enabled: false }
+                };
+
+                const sourceEditor = monaco.editor.create(document.getElementById('source-editor-container'), {
+                    ...editorOptions,
+                    value: "# Hello World\n\nPaste your markdown here to translate!"
+                });
+
+                const resultEditor = monaco.editor.create(document.getElementById('result-editor-container'), {
+                    ...editorOptions,
+                    value: "",
+                    readOnly: true
+                });
+
+                $('#translateBtn').click(function () {
+                    const content = sourceEditor.getValue();
+                    const targetLanguage = $('#targetLanguage').val();
+
+                    if (!content) {
+                        alert('@Localizer["Please enter some content to translate."]');
+                        return;
+                    }
+
+                    // UI Loading state
+                    $('#translateBtn').prop('disabled', true);
+                    $('#btnText').addClass('d-none');
+                    $('#btnLoading').removeClass('d-none');
+                    
+                    resultEditor.setValue('@Localizer["Translating... Please wait..."]');
+
+                    $.ajax({
+                        url: '@Url.Action("Translate", "Translate")',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            content: content,
+                            targetLanguage: targetLanguage
+                        }),
+                        headers: {
+                            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function (response) {
+                            if (response.translatedContent) {
+                                resultEditor.setValue(response.translatedContent);
+                            } else if (response.TranslatedContent) {
+                                resultEditor.setValue(response.TranslatedContent);
+                            } else {
+                                resultEditor.setValue('@Localizer["Error: No translated content received."]');
+                            }
+                        },
+                        error: function (xhr) {
+                            alert('@Localizer["Translation failed: "]' + xhr.responseText);
+                            resultEditor.setValue('@Localizer["Translation failed."]');
+                        },
+                        complete: function () {
+                            $('#translateBtn').prop('disabled', false);
+                            $('#btnText').removeClass('d-none');
+                            $('#btnLoading').addClass('d-none');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+}
+
+@Html.AntiForgeryToken()

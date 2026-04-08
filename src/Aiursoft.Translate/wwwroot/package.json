@@ -6,6 +6,11 @@
   "license": "MIT",
   "dependencies": {
     "@aiursoft/uistack": "^1.0.8",
-    "dropify": "^0.2.2"
+    "@fontsource/cascadia-code": "^5.2.3",
+    "@highlightjs/cdn-assets": "^11.11.1",
+    "dropify": "^0.2.2",
+    "mathjax": "^3.2.2",
+    "mermaid": "^11.12.1",
+    "monaco-editor": "^0.55.1"
   }
 }

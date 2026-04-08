@@ -66,7 +66,10 @@ public class AppPermissions
                 localizer["Allows viewing the background job dashboard and managing jobs."]),
             new(AppPermissionNames.CanManageGlobalSettings,
                 localizer["Manage Global Settings"],
-                localizer["Allows viewing and modifying global application settings."])
+                localizer["Allows viewing and modifying global application settings."]),
+            new(AppPermissionNames.CanTranslate,
+                localizer["Translate Content"],
+                localizer["Allows using the AI-powered translation tools."])
         ];
         return allPermission;
     }
