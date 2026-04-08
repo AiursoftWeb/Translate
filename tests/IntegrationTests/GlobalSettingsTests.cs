@@ -3,7 +3,6 @@ using Aiursoft.DbTools;
 using Aiursoft.Translate.Configuration;
 using Aiursoft.Translate.Entities;
 using Aiursoft.Translate.Services;
-using Aiursoft.Translate.Services.FileStorage;
 using Microsoft.EntityFrameworkCore;
 using Aiursoft.CSTools.Tools;
 using static Aiursoft.WebTools.Extends;
