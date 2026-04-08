@@ -10,6 +10,8 @@ public class SettingsMap
     public const string ProjectLogo = "ProjectLogo";
     public const string AllowUserAdjustNickname = "Allow_User_Adjust_Nickname";
     public const string Icp = "Icp";
+    public const string GuestTranslateMaxPerHour = "GuestTranslateMaxPerHour";
+    public const string UserTranslateMaxPerHour = "UserTranslateMaxPerHour";
 
     public class FakeLocalizer
     {
@@ -70,6 +72,22 @@ public class SettingsMap
             Description = Localizer["The ICP license number for China mainland users. Leave empty to hide."],
             Type = SettingType.Text,
             DefaultValue = ""
+        },
+        new GlobalSettingDefinition
+        {
+            Key = GuestTranslateMaxPerHour,
+            Name = Localizer["Guest Translate Limit (per hour)"],
+            Description = Localizer["Maximum number of translations per hour for anonymous (guest) users."],
+            Type = SettingType.Text,
+            DefaultValue = "3"
+        },
+        new GlobalSettingDefinition
+        {
+            Key = UserTranslateMaxPerHour,
+            Name = Localizer["User Translate Limit (per hour)"],
+            Description = Localizer["Maximum number of translations per hour for authenticated users."],
+            Type = SettingType.Text,
+            DefaultValue = "20"
         }
     };
 }

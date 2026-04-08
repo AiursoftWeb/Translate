@@ -3,7 +3,6 @@ using Aiursoft.Translate.Services;
 using Aiursoft.Dotlang.Shared;
 using Aiursoft.UiStack.Navigation;
 using Aiursoft.WebTools.Attributes;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aiursoft.Translate.Controllers;
@@ -27,6 +26,19 @@ public class TranslateController(OllamaBasedTranslatorEngine translator, GuestTr
         return this.StackView(new IndexViewModel());
     }
 
+    [RenderInNavBar(
+        NavGroupName = "About",
+        NavGroupOrder = 9000,
+        CascadedLinksGroupName = "About",
+        CascadedLinksIcon = "server",
+        CascadedLinksOrder = 1,
+        LinkText = "Self Host",
+        LinkOrder = 1)]
+    public IActionResult SelfHost()
+    {
+        return this.StackView(new Models.HomeViewModels.SelfHostViewModel());
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Translate([FromBody] TranslateRequest request)
@@ -36,12 +48,20 @@ public class TranslateController(OllamaBasedTranslatorEngine translator, GuestTr
             return BadRequest(ModelState);
         }
 
-        if (!User.Identity!.IsAuthenticated)
+        if (User.Identity!.IsAuthenticated)
+        {
+            var userId = User.Identity.Name ?? "unknown";
+            if (!await rateLimiter.TryConsumeAsUserAsync(userId))
+            {
+                return StatusCode(429, new { tooManyRequests = true });
+            }
+        }
+        else
         {
             var ip = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
-            if (!rateLimiter.TryConsume(ip))
+            if (!await rateLimiter.TryConsumeAsGuestAsync(ip))
             {
-                return Challenge();
+                return StatusCode(401, new { requireLogin = true });
             }
         }
 
@@ -66,12 +86,25 @@ public class TranslateController(OllamaBasedTranslatorEngine translator, GuestTr
             return;
         }
 
-        if (!User.Identity!.IsAuthenticated)
+        if (User.Identity!.IsAuthenticated)
+        {
+            var userId = User.Identity.Name ?? "unknown";
+            if (!await rateLimiter.TryConsumeAsUserAsync(userId))
+            {
+                Response.StatusCode = 429;
+                Response.ContentType = "application/json";
+                await Response.WriteAsync("{\"tooManyRequests\":true}");
+                return;
+            }
+        }
+        else
         {
             var ip = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
-            if (!rateLimiter.TryConsume(ip))
+            if (!await rateLimiter.TryConsumeAsGuestAsync(ip))
             {
-                await HttpContext.ChallengeAsync();
+                Response.StatusCode = 401;
+                Response.ContentType = "application/json";
+                await Response.WriteAsync("{\"requireLogin\":true}");
                 return;
             }
         }

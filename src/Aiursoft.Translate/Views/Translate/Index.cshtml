@@ -59,6 +59,14 @@
     </div>
 </div>
 
+<!-- Localization data for JavaScript (server-rendered, never mix @Localizer inside <script>) -->
+<div id="loc-data" hidden>
+    <span data-key="enter-content">@Localizer["Please enter some content to translate."]</span>
+    <span data-key="too-many-requests">@Localizer["Too many requests, please wait."]</span>
+    <span data-key="translation-failed-prefix">@Localizer["Translation failed: "]</span>
+    <span data-key="translation-failed">@Localizer["Translation failed."]</span>
+</div>
+
 @section styles {
     <link rel="stylesheet" href="~/node_modules/@@fontsource/cascadia-code/index.css" asp-append-version="true" />
     <style>
@@ -97,6 +105,11 @@
     <script src="~/node_modules/monaco-editor/min/vs/loader.js" asp-append-version="true"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            function getLocalizedText(key, defaultText) {
+                const el = document.querySelector(`#loc-data span[data-key="${key}"]`);
+                return el ? el.innerText : defaultText;
+            }
+
             require(['vs/editor/editor.main'], function () {
                 const monacoTheme = '@(isDarkMode ? "vs-dark" : "vs")';
                 const editorOptions = {
@@ -166,7 +179,7 @@
                     const targetLanguage = $('#targetLanguage').val();
 
                     if (!content) {
-                        alert('@Localizer["Please enter some content to translate."]');
+                        alert(getLocalizedText('enter-content', 'Please enter some content to translate.'));
                         return;
                     }
 
@@ -192,14 +205,21 @@
                             targetLanguage: targetLanguage
                         })
                     }).then(async response => {
-                        if (response.redirected) {
-                            window.location.href = response.url;
+                        if (response.status === 401) {
+                            const data = await response.json().catch(() => ({}));
+                            if (data.requireLogin) {
+                                window.open('@Url.Action("Login", "Account")', '_blank');
+                                return;
+                            }
+                        }
+                        if (response.status === 429) {
+                            alert(getLocalizedText('too-many-requests', '使用过于频繁，请稍等。'));
                             return;
                         }
                         if (!response.ok) {
                             const errorText = await response.text();
-                            alert('@Localizer["Translation failed: "]' + errorText);
-                            resultEditor.setValue('@Localizer["Translation failed."]');
+                            alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + errorText);
+                            resultEditor.setValue(getLocalizedText('translation-failed', 'Translation failed.'));
                             return;
                         }
 
@@ -219,8 +239,8 @@
                         if (error.name === 'AbortError') {
                             console.log('Translation aborted by user.');
                         } else {
-                            alert('@Localizer["Translation failed: "]' + error);
-                            resultEditor.setValue('@Localizer["Translation failed."]');
+                            alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + error);
+                            resultEditor.setValue(getLocalizedText('translation-failed', 'Translation failed.'));
                         }
                     }).finally(() => {
                         abortController = null;
