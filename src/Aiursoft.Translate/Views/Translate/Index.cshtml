@@ -115,6 +115,37 @@
                     value: "# Hello World\n\nPaste your markdown here to translate!"
                 });
 
+                const updateTargetLanguage = (content) => {
+                    const trimmed = (content || "").trim();
+                    if (!trimmed) return;
+                    
+                    // Simple detection: If starts with ASCII letters, target Chinese. Otherwise English.
+                    // Ignore common markdown symbols at the start.
+                    const isEnglish = /^[#\s\*]*[A-Za-z]/.test(trimmed);
+                    const targetSelect = $('#targetLanguage');
+                    if (isEnglish) {
+                        if (targetSelect.val() !== 'zh-CN') {
+                            targetSelect.val('zh-CN');
+                        }
+                    } else {
+                        if (targetSelect.val() !== 'en-US') {
+                            targetSelect.val('en-US');
+                        }
+                    }
+                };
+
+                // Initial detection
+                updateTargetLanguage(sourceEditor.getValue());
+
+                // Detect on content change (debounced)
+                let detectTimeout;
+                sourceEditor.onDidChangeModelContent(() => {
+                    clearTimeout(detectTimeout);
+                    detectTimeout = setTimeout(() => {
+                        updateTargetLanguage(sourceEditor.getValue());
+                    }, 1000);
+                });
+
                 const resultEditor = monaco.editor.create(document.getElementById('result-editor-container'), {
                     ...editorOptions,
                     value: "",

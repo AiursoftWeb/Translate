@@ -8,11 +8,15 @@ namespace Aiursoft.Translate.Tests.IntegrationTests;
 public class BasicTests : TestBase
 {
     [TestMethod]
-    [DataRow("/")]
-    [DataRow("/hOmE?aaaaaa=bbbbbb")]
-    [DataRow("/hOmE/InDeX")]
-    public async Task GetHome(string url)
+    [DataRow("/", false)]
+    [DataRow("/Translate", true)]
+    [DataRow("/Translate/Index", true)]
+    public async Task GetHome(string url, bool needAuth)
     {
+        if (needAuth)
+        {
+            await LoginAsAdmin();
+        }
         var response = await Http.GetAsync(url);
         response.EnsureSuccessStatusCode();
     }
@@ -31,7 +35,7 @@ public class BasicTests : TestBase
             { "Password", password },
             { "ConfirmPassword", password }
         });
-        AssertRedirect(registerResponse, "/Dashboard/Index");
+        AssertRedirect(registerResponse, "/");
 
         // Step 2: Log off the user and assert a successful redirect.
         var homePageResponse = await Http.GetAsync("/Manage/Index");
@@ -46,13 +50,14 @@ public class BasicTests : TestBase
             { "EmailOrUserName", email },
             { "Password", password }
         });
-        AssertRedirect(loginResponse, "/Dashboard/Index");
+        AssertRedirect(loginResponse, "/");
 
         // Step 4: Verify the final login state by checking the home page content.
-        var finalHomePageResponse = await Http.GetAsync("/dashboard/index");
+        var finalHomePageResponse = await Http.GetAsync("/");
         finalHomePageResponse.EnsureSuccessStatusCode();
         var finalHtml = await finalHomePageResponse.Content.ReadAsStringAsync();
         Assert.Contains(expectedUserName, finalHtml);
+
     }
 
     [TestMethod]
@@ -215,7 +220,7 @@ await PostForm("/Account/LogOff", new Dictionary<string, string>(), includeToken
             { "EmailOrUserName", email },
             { "Password", newPassword }
         });
-        AssertRedirect(newLoginResponse, "/Dashboard/Index");
+        AssertRedirect(newLoginResponse, "/");
     }
 
     [TestMethod]
@@ -236,7 +241,7 @@ await PostForm("/Account/LogOff", new Dictionary<string, string>(), includeToken
         AssertRedirect(changeProfileResponse, "/Manage?Message=ChangeProfileSuccess");
 
         // Step 4: Visit the home page and verify the new name is displayed.
-        var homePageResponse = await Http.GetAsync("/dashboard/index");
+        var homePageResponse = await Http.GetAsync("/");
         homePageResponse.EnsureSuccessStatusCode();
         var html = await homePageResponse.Content.ReadAsStringAsync();
         Assert.Contains(newUserName, html);

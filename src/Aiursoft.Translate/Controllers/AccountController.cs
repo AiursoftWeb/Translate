@@ -77,7 +77,7 @@ public class AccountController(
             if (result.Succeeded)
             {
                 logger.LogInformation(1, "User logged in");
-                return RedirectToLocal(returnUrl ?? "/Dashboard/Index");
+                return RedirectToLocal(returnUrl ?? "/");
             }
 
             if (result.IsLockedOut)
@@ -143,7 +143,7 @@ public class AccountController(
 
                 await signInManager.SignInAsync(user, isPersistent: false);
                 logger.LogInformation(3, "User created a new account with password");
-                return RedirectToLocal(returnUrl ?? "/Dashboard/Index");
+                return RedirectToLocal(returnUrl ?? "/");
             }
 
             AddErrors(result);
@@ -165,7 +165,7 @@ public class AccountController(
 
         await signInManager.SignOutAsync();
         logger.LogInformation(4, "User logged out locally.");
-        return RedirectToAction(nameof(HomeController.Index), "Home");
+        return Redirect("/");
     }
 
     [ExcludeFromCodeCoverage]
@@ -189,7 +189,7 @@ public class AccountController(
         if (result.Succeeded)
         {
             logger.LogInformation("User logged in with {Name} provider.", info.LoginProvider);
-            return RedirectToLocal(returnUrl ?? "/Dashboard/Index");
+            return RedirectToLocal(returnUrl ?? "/");
         }
 
         if (result.IsLockedOut)
@@ -225,7 +225,7 @@ public class AccountController(
             return Redirect(returnUrl);
         }
 
-        return RedirectToAction(nameof(HomeController.Index), "Home");
+        return Redirect("/");
     }
 
     #endregion

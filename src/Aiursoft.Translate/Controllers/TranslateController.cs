@@ -13,7 +13,10 @@ namespace Aiursoft.Translate.Controllers;
 [LimitPerMin]
 public class TranslateController(OllamaBasedTranslatorEngine translator) : Controller
 {
-    [Authorize(Policy = AppPermissionNames.CanTranslate)]
+    [Route("")]
+    [Route("Translate")]
+    [Route("Translate/Index")]
+    [AllowAnonymous]
     [RenderInNavBar(
         NavGroupName = "Tools",
         NavGroupOrder = 8000,
