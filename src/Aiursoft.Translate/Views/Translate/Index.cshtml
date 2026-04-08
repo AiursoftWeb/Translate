@@ -29,7 +29,8 @@
         <!-- Right: Actions -->
         <div class="d-flex align-items-center gap-2">
             <button type="button" id="translateBtn" class="btn btn-sm btn-primary shadow-sm px-3 fw-bold">
-                <span id="btnText"><i class="align-middle me-1" data-lucide="zap"></i> @Localizer["Translate"]</span>
+                <span id="btnTextNormal"><i class="align-middle me-1" data-lucide="zap"></i> @Localizer["Translate"]</span>
+                <span id="btnTextStop" class="d-none"><i class="align-middle me-1" data-lucide="square"></i> @Localizer["Stop"]</span>
                 <span id="btnLoading" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
             </button>
         </div>
@@ -153,7 +154,14 @@
                     wordWrap: 'on'
                 });
 
+                let abortController = null;
+
                 $('#translateBtn').click(function () {
+                    if (abortController) {
+                        abortController.abort();
+                        return;
+                    }
+
                     const content = sourceEditor.getValue();
                     const targetLanguage = $('#targetLanguage').val();
 
@@ -163,15 +171,18 @@
                     }
 
                     // UI Loading state
-                    $('#translateBtn').prop('disabled', true);
-                    $('#btnText').addClass('d-none');
+                    $('#btnTextNormal').addClass('d-none');
+                    $('#btnTextStop').removeClass('d-none');
                     $('#btnLoading').removeClass('d-none');
+                    $('#translateBtn').removeClass('btn-primary').addClass('btn-danger');
                     
                     resultEditor.setValue('');
                     let translatedFullContent = '';
+                    abortController = new AbortController();
 
                     fetch('@Url.Action("TranslateStream", "Translate")', {
                         method: 'POST',
+                        signal: abortController.signal,
                         headers: {
                             'Content-Type': 'application/json',
                             'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
@@ -201,12 +212,18 @@
                             resultEditor.revealLine(resultEditor.getModel().getLineCount());
                         }
                     }).catch(error => {
-                        alert('@Localizer["Translation failed: "]' + error);
-                        resultEditor.setValue('@Localizer["Translation failed."]');
+                        if (error.name === 'AbortError') {
+                            console.log('Translation aborted by user.');
+                        } else {
+                            alert('@Localizer["Translation failed: "]' + error);
+                            resultEditor.setValue('@Localizer["Translation failed."]');
+                        }
                     }).finally(() => {
-                        $('#translateBtn').prop('disabled', false);
-                        $('#btnText').removeClass('d-none');
+                        abortController = null;
+                        $('#btnTextNormal').removeClass('d-none');
+                        $('#btnTextStop').addClass('d-none');
                         $('#btnLoading').addClass('d-none');
+                        $('#translateBtn').removeClass('btn-danger').addClass('btn-primary');
                     });
                 });
             });
