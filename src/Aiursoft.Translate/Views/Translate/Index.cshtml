@@ -97,161 +97,167 @@
             top: 0;
             position: sticky;
         }
+
+        /* CodeMirror 6: fill the absolute-positioned container divs */
+        #source-editor-container .cm-editor,
+        #result-editor-container .cm-editor {
+            height: 100%;
+            font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
+            font-size: 14px;
+        }
+        #source-editor-container .cm-scroller,
+        #result-editor-container .cm-scroller {
+            overflow: auto;
+            height: 100%;
+        }
     </style>
 }
 
 @section scripts {
-    <script>var require = { paths: { 'vs': '/node_modules/monaco-editor/min/vs' } };</script>
-    <script src="~/node_modules/monaco-editor/min/vs/loader.js" asp-append-version="true"></script>
+    <script src="~/codemirror-bundle.js" asp-append-version="true"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        (function () {
+            const { basicSetup, EditorView, EditorState, markdown, oneDark } = window.CM;
+
             function getLocalizedText(key, defaultText) {
                 const el = document.querySelector(`#loc-data span[data-key="${key}"]`);
                 return el ? el.innerText : defaultText;
             }
 
-            require(['vs/editor/editor.main'], function () {
-                const monacoTheme = '@(isDarkMode ? "vs-dark" : "vs")';
-                const editorOptions = {
-                    language: 'markdown',
-                    theme: monacoTheme,
-                    automaticLayout: true,
-                    wordWrap: 'on',
-                    'semanticHighlighting.enabled': true,
-                    fontFamily: "'Cascadia Code', 'Consolas', 'Courier New', monospace",
-                    fontSize: 14,
-                    fontLigatures: true,
-                    minimap: { enabled: false }
-                };
-
-                const sourceEditor = monaco.editor.create(document.getElementById('source-editor-container'), {
-                    ...editorOptions,
-                    value: "# Hello World\n\nPaste your markdown here to translate!"
+            function setEditorValue(editor, text) {
+                editor.dispatch({
+                    changes: { from: 0, to: editor.state.doc.length, insert: text }
                 });
+            }
 
-                const updateTargetLanguage = (content) => {
-                    const trimmed = (content || "").trim();
-                    if (!trimmed) return;
-                    
-                    // Simple detection: If starts with ASCII letters, target Chinese. Otherwise English.
-                    // Ignore common markdown symbols at the start.
-                    const isEnglish = /^[#\s\*]*[A-Za-z]/.test(trimmed);
-                    const targetSelect = $('#targetLanguage');
-                    if (isEnglish) {
-                        if (targetSelect.val() !== 'zh-CN') {
-                            targetSelect.val('zh-CN');
-                        }
-                    } else {
-                        if (targetSelect.val() !== 'en-US') {
-                            targetSelect.val('en-US');
+            function scrollEditorToBottom(editor) {
+                editor.dispatch({
+                    effects: EditorView.scrollIntoView(editor.state.doc.length)
+                });
+            }
+
+            function updateTargetLanguage(content) {
+                const trimmed = (content || '').trim();
+                if (!trimmed) return;
+                const isEnglish = /^[#\s*]*[A-Za-z]/.test(trimmed);
+                const targetSelect = document.getElementById('targetLanguage');
+                const desired = isEnglish ? 'zh-CN' : 'en-US';
+                if (targetSelect.value !== desired) targetSelect.value = desired;
+            }
+
+            const isDarkMode = @(isDarkMode ? "true" : "false");
+            const commonExtensions = [
+                basicSetup,
+                markdown(),
+                EditorView.lineWrapping,
+                ...(isDarkMode ? [oneDark] : [])
+            ];
+
+            let languageAutoDetected = false;
+            let detectTimeout;
+
+            const sourceEditor = new EditorView({
+                doc: '# Hello World\n\nPaste your markdown here to translate!',
+                extensions: [
+                    ...commonExtensions,
+                    EditorView.updateListener.of(update => {
+                        if (!update.docChanged || languageAutoDetected) return;
+                        clearTimeout(detectTimeout);
+                        detectTimeout = setTimeout(() => {
+                            updateTargetLanguage(sourceEditor.state.doc.toString());
+                            languageAutoDetected = true;
+                        }, 1000);
+                    })
+                ],
+                parent: document.getElementById('source-editor-container')
+            });
+
+            const resultEditor = new EditorView({
+                extensions: [
+                    ...commonExtensions,
+                    EditorState.readOnly.of(true)
+                ],
+                parent: document.getElementById('result-editor-container')
+            });
+
+            let abortController = null;
+            const btn = document.getElementById('translateBtn');
+
+            btn.addEventListener('click', function () {
+                if (abortController) {
+                    abortController.abort();
+                    return;
+                }
+
+                const content = sourceEditor.state.doc.toString();
+                const targetLanguage = document.getElementById('targetLanguage').value;
+
+                if (!content) {
+                    alert(getLocalizedText('enter-content', 'Please enter some content to translate.'));
+                    return;
+                }
+
+                document.getElementById('btnTextNormal').classList.add('d-none');
+                document.getElementById('btnTextStop').classList.remove('d-none');
+                document.getElementById('btnLoading').classList.remove('d-none');
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-danger');
+
+                setEditorValue(resultEditor, '');
+                let translatedFullContent = '';
+                abortController = new AbortController();
+
+                fetch('@Url.Action("TranslateStream", "Translate")', {
+                    method: 'POST',
+                    signal: abortController.signal,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    },
+                    body: JSON.stringify({ content, targetLanguage })
+                }).then(async response => {
+                    if (response.status === 401) {
+                        const data = await response.json().catch(() => ({}));
+                        if (data.requireLogin) {
+                            window.open('@Url.Action("Login", "Account")', '_blank');
+                            return;
                         }
                     }
-                };
-
-                // Detect language only once — the first time the user edits/pastes content.
-                let languageAutoDetected = false;
-                let detectTimeout;
-                sourceEditor.onDidChangeModelContent(() => {
-                    if (languageAutoDetected) return;
-                    clearTimeout(detectTimeout);
-                    detectTimeout = setTimeout(() => {
-                        updateTargetLanguage(sourceEditor.getValue());
-                        languageAutoDetected = true;
-                    }, 1000);
-                });
-
-                const resultEditor = monaco.editor.create(document.getElementById('result-editor-container'), {
-                    ...editorOptions,
-                    value: "",
-                    readOnly: true,
-                    wordWrap: 'on'
-                });
-
-                let abortController = null;
-
-                $('#translateBtn').click(function () {
-                    if (abortController) {
-                        abortController.abort();
+                    if (response.status === 429) {
+                        alert(getLocalizedText('too-many-requests', '使用过于频繁，请稍等。'));
+                        return;
+                    }
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + errorText);
+                        setEditorValue(resultEditor, getLocalizedText('translation-failed', 'Translation failed.'));
                         return;
                     }
 
-                    const content = sourceEditor.getValue();
-                    const targetLanguage = $('#targetLanguage').val();
-
-                    if (!content) {
-                        alert(getLocalizedText('enter-content', 'Please enter some content to translate.'));
-                        return;
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder();
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        translatedFullContent += decoder.decode(value, { stream: true });
+                        setEditorValue(resultEditor, translatedFullContent);
+                        scrollEditorToBottom(resultEditor);
                     }
-
-                    // UI Loading state
-                    $('#btnTextNormal').addClass('d-none');
-                    $('#btnTextStop').removeClass('d-none');
-                    $('#btnLoading').removeClass('d-none');
-                    $('#translateBtn').removeClass('btn-primary').addClass('btn-danger');
-                    
-                    resultEditor.setValue('');
-                    let translatedFullContent = '';
-                    abortController = new AbortController();
-
-                    fetch('@Url.Action("TranslateStream", "Translate")', {
-                        method: 'POST',
-                        signal: abortController.signal,
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
-                        },
-                        body: JSON.stringify({
-                            content: content,
-                            targetLanguage: targetLanguage
-                        })
-                    }).then(async response => {
-                        if (response.status === 401) {
-                            const data = await response.json().catch(() => ({}));
-                            if (data.requireLogin) {
-                                window.open('@Url.Action("Login", "Account")', '_blank');
-                                return;
-                            }
-                        }
-                        if (response.status === 429) {
-                            alert(getLocalizedText('too-many-requests', '使用过于频繁，请稍等。'));
-                            return;
-                        }
-                        if (!response.ok) {
-                            const errorText = await response.text();
-                            alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + errorText);
-                            resultEditor.setValue(getLocalizedText('translation-failed', 'Translation failed.'));
-                            return;
-                        }
-
-                        const reader = response.body.getReader();
-                        const decoder = new TextDecoder();
-
-                        while (true) {
-                            const { done, value } = await reader.read();
-                            if (done) break;
-
-                            const chunk = decoder.decode(value, { stream: true });
-                            translatedFullContent += chunk;
-                            resultEditor.setValue(translatedFullContent);
-                            resultEditor.revealLine(resultEditor.getModel().getLineCount());
-                        }
-                    }).catch(error => {
-                        if (error.name === 'AbortError') {
-                            console.log('Translation aborted by user.');
-                        } else {
-                            alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + error);
-                            resultEditor.setValue(getLocalizedText('translation-failed', 'Translation failed.'));
-                        }
-                    }).finally(() => {
-                        abortController = null;
-                        $('#btnTextNormal').removeClass('d-none');
-                        $('#btnTextStop').addClass('d-none');
-                        $('#btnLoading').addClass('d-none');
-                        $('#translateBtn').removeClass('btn-danger').addClass('btn-primary');
-                    });
+                }).catch(error => {
+                    if (error.name !== 'AbortError') {
+                        alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + error);
+                        setEditorValue(resultEditor, getLocalizedText('translation-failed', 'Translation failed.'));
+                    }
+                }).finally(() => {
+                    abortController = null;
+                    document.getElementById('btnTextNormal').classList.remove('d-none');
+                    document.getElementById('btnTextStop').classList.add('d-none');
+                    document.getElementById('btnLoading').classList.add('d-none');
+                    btn.classList.remove('btn-danger');
+                    btn.classList.add('btn-primary');
                 });
             });
-        });
+        })();
     </script>
 }
 
