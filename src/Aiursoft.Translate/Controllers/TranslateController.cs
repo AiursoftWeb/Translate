@@ -3,19 +3,16 @@ using Aiursoft.Translate.Services;
 using Aiursoft.Dotlang.Shared;
 using Aiursoft.UiStack.Navigation;
 using Aiursoft.WebTools.Attributes;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aiursoft.Translate.Controllers;
 
-[Authorize]
 [LimitPerMin]
 public class TranslateController(OllamaBasedTranslatorEngine translator) : Controller
 {
     [Route("")]
     [Route("Translate")]
     [Route("Translate/Index")]
-    [AllowAnonymous]
     [RenderInNavBar(
         NavGroupName = "Tools",
         NavGroupOrder = 8000,
@@ -30,7 +27,6 @@ public class TranslateController(OllamaBasedTranslatorEngine translator) : Contr
     }
 
     [HttpPost]
-    [AllowAnonymous]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Translate([FromBody] TranslateRequest request)
     {
@@ -51,7 +47,6 @@ public class TranslateController(OllamaBasedTranslatorEngine translator) : Contr
     }
 
     [HttpPost]
-    [AllowAnonymous]
     [ValidateAntiForgeryToken]
     public async Task TranslateStream([FromBody] TranslateRequest request)
     {
