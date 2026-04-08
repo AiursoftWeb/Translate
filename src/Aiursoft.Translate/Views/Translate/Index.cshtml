@@ -118,7 +118,8 @@
                 const resultEditor = monaco.editor.create(document.getElementById('result-editor-container'), {
                     ...editorOptions,
                     value: "",
-                    readOnly: true
+                    readOnly: true,
+                    wordWrap: 'on'
                 });
 
                 $('#translateBtn').click(function () {
@@ -135,37 +136,46 @@
                     $('#btnText').addClass('d-none');
                     $('#btnLoading').removeClass('d-none');
                     
-                    resultEditor.setValue('@Localizer["Translating... Please wait..."]');
+                    resultEditor.setValue('');
+                    let translatedFullContent = '';
 
-                    $.ajax({
-                        url: '@Url.Action("Translate", "Translate")',
-                        type: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify({
-                            content: content,
-                            targetLanguage: targetLanguage
-                        }),
+                    fetch('@Url.Action("TranslateStream", "Translate")', {
+                        method: 'POST',
                         headers: {
+                            'Content-Type': 'application/json',
                             'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
                         },
-                        success: function (response) {
-                            if (response.translatedContent) {
-                                resultEditor.setValue(response.translatedContent);
-                            } else if (response.TranslatedContent) {
-                                resultEditor.setValue(response.TranslatedContent);
-                            } else {
-                                resultEditor.setValue('@Localizer["Error: No translated content received."]');
-                            }
-                        },
-                        error: function (xhr) {
-                            alert('@Localizer["Translation failed: "]' + xhr.responseText);
+                        body: JSON.stringify({
+                            content: content,
+                            targetLanguage: targetLanguage
+                        })
+                    }).then(async response => {
+                        if (!response.ok) {
+                            const errorText = await response.text();
+                            alert('@Localizer["Translation failed: "]' + errorText);
                             resultEditor.setValue('@Localizer["Translation failed."]');
-                        },
-                        complete: function () {
-                            $('#translateBtn').prop('disabled', false);
-                            $('#btnText').removeClass('d-none');
-                            $('#btnLoading').addClass('d-none');
+                            return;
                         }
+
+                        const reader = response.body.getReader();
+                        const decoder = new TextDecoder();
+
+                        while (true) {
+                            const { done, value } = await reader.read();
+                            if (done) break;
+
+                            const chunk = decoder.decode(value, { stream: true });
+                            translatedFullContent += chunk;
+                            resultEditor.setValue(translatedFullContent);
+                            resultEditor.revealLine(resultEditor.getModel().getLineCount());
+                        }
+                    }).catch(error => {
+                        alert('@Localizer["Translation failed: "]' + error);
+                        resultEditor.setValue('@Localizer["Translation failed."]');
+                    }).finally(() => {
+                        $('#translateBtn').prop('disabled', false);
+                        $('#btnText').removeClass('d-none');
+                        $('#btnLoading').addClass('d-none');
                     });
                 });
             });

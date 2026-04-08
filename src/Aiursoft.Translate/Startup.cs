@@ -6,6 +6,7 @@ using Aiursoft.Canon.ScheduledTasks;
 using Aiursoft.DbTools.Switchable;
 using Aiursoft.Scanner;
 using Aiursoft.GptClient.Services;
+using Aiursoft.Dotlang.Shared;
 using Aiursoft.Translate.Configuration;
 using Aiursoft.Translate.Services;
 using Aiursoft.WebTools.Abstractions.Models;
@@ -32,6 +33,12 @@ public class Startup : IWebStartup
         // AppSettings.
         services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
         services.Configure<OpenAIConfiguration>(configuration.GetSection("OpenAI"));
+        services.Configure<TranslateOptions>(options =>
+        {
+            options.OllamaInstance = configuration["OpenAI:CompletionApiUrl"] ?? string.Empty;
+            options.OllamaModel = configuration["OpenAI:Model"] ?? "llama3.2";
+            options.OllamaToken = configuration["OpenAI:Token"] ?? string.Empty;
+        });
 
         // Relational database
         var (connectionString, dbType, allowCache) = configuration.GetDbSettings();

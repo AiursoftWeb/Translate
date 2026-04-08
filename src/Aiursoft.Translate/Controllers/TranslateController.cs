@@ -1,6 +1,7 @@
 using Aiursoft.Translate.Authorization;
 using Aiursoft.Translate.Models.TranslateViewModels;
 using Aiursoft.Translate.Services;
+using Aiursoft.Dotlang.Shared;
 using Aiursoft.UiStack.Navigation;
 using Aiursoft.WebTools.Attributes;
 using Microsoft.AspNetCore.Authorization;
@@ -17,7 +18,7 @@ public class TranslateController(OllamaBasedTranslatorEngine translator) : Contr
         NavGroupName = "Tools",
         NavGroupOrder = 8000,
         CascadedLinksGroupName = "Tools",
-        CascadedLinksIcon = "translate",
+        CascadedLinksIcon = "languages",
         CascadedLinksOrder = 1,
         LinkText = "Translate",
         LinkOrder = 1)]
@@ -44,6 +45,36 @@ public class TranslateController(OllamaBasedTranslatorEngine translator) : Contr
         catch (Exception ex)
         {
             return StatusCode(500, ex.Message);
+        }
+    }
+
+    [HttpPost]
+    [Authorize(Policy = AppPermissionNames.CanTranslate)]
+    [ValidateAntiForgeryToken]
+    public async Task TranslateStream([FromBody] TranslateRequest request)
+    {
+        if (!ModelState.IsValid)
+        {
+            Response.StatusCode = 400;
+            return;
+        }
+
+        Response.ContentType = "text/event-stream";
+        Response.Headers.Append("Cache-Control", "no-cache");
+        Response.Headers.Append("Connection", "keep-alive");
+
+        try
+        {
+            await foreach (var part in translator.TranslateStreamAsync(request.Content, request.TargetLanguage, HttpContext.RequestAborted))
+            {
+                await Response.WriteAsync(part, HttpContext.RequestAborted);
+                await Response.Body.FlushAsync(HttpContext.RequestAborted);
+            }
+        }
+        catch (Exception ex)
+        {
+            // Response has already started, cannot set status code.
+            await Response.WriteAsync("\n[ERROR]: " + ex.Message);
         }
     }
 }
