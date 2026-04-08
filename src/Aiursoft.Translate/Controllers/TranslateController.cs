@@ -3,12 +3,13 @@ using Aiursoft.Translate.Services;
 using Aiursoft.Dotlang.Shared;
 using Aiursoft.UiStack.Navigation;
 using Aiursoft.WebTools.Attributes;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aiursoft.Translate.Controllers;
 
 [LimitPerMin]
-public class TranslateController(OllamaBasedTranslatorEngine translator) : Controller
+public class TranslateController(OllamaBasedTranslatorEngine translator, GuestTranslateRateLimiter rateLimiter) : Controller
 {
     [Route("")]
     [Route("Translate")]
@@ -35,6 +36,15 @@ public class TranslateController(OllamaBasedTranslatorEngine translator) : Contr
             return BadRequest(ModelState);
         }
 
+        if (!User.Identity!.IsAuthenticated)
+        {
+            var ip = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+            if (!rateLimiter.TryConsume(ip))
+            {
+                return Challenge();
+            }
+        }
+
         try
         {
             var translated = await translator.TranslateAsync(request.Content, request.TargetLanguage);
@@ -54,6 +64,16 @@ public class TranslateController(OllamaBasedTranslatorEngine translator) : Contr
         {
             Response.StatusCode = 400;
             return;
+        }
+
+        if (!User.Identity!.IsAuthenticated)
+        {
+            var ip = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+            if (!rateLimiter.TryConsume(ip))
+            {
+                await HttpContext.ChallengeAsync();
+                return;
+            }
         }
 
         Response.ContentType = "text/event-stream";

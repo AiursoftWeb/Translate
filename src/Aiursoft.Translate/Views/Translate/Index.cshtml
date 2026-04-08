@@ -192,6 +192,10 @@
                             targetLanguage: targetLanguage
                         })
                     }).then(async response => {
+                        if (response.redirected) {
+                            window.location.href = response.url;
+                            return;
+                        }
                         if (!response.ok) {
                             const errorText = await response.text();
                             alert('@Localizer["Translation failed: "]' + errorText);

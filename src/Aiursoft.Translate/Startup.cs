@@ -66,6 +66,7 @@ public class Startup : IWebStartup
         services.AddTaskCanon();
         services.AddAssemblyDependencies(typeof(Startup).Assembly);
         services.AddSingleton<NavigationState<Startup>>();
+        services.AddSingleton<GuestTranslateRateLimiter>();
         services.AddScoped<ChatClient>();
         services.AddScoped<IOllamaService, OllamaService>();
         services.AddScoped<MarkdownShredder>();
