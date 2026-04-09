@@ -14,7 +14,7 @@ namespace Aiursoft.Translate.Services.Authentication;
 [ExcludeFromCodeCoverage]
 public static class AuthenticationExtensions
 {
-    public static IServiceCollection AddTemplateAuth(
+    public static IServiceCollection AddTranslateAuth(
         this IServiceCollection services,
         IConfiguration configuration)
     {
@@ -40,7 +40,7 @@ public static class AuthenticationExtensions
                     options.Password.RequireUppercase = true;
                 }
             })
-            .AddEntityFrameworkStores<TemplateDbContext>()
+            .AddEntityFrameworkStores<TranslateDbContext>()
             .AddDefaultTokenProviders();
 
         services.AddScoped<IUserClaimsPrincipalFactory<User>, UserClaimsPrincipalFactory>();

@@ -12,7 +12,7 @@ namespace Aiursoft.Translate.Services.BackgroundJobs;
 /// whose avatar was subsequently replaced.
 /// </summary>
 public class OrphanAvatarCleanupJob(
-    TemplateDbContext db,
+    TranslateDbContext db,
     FeatureFoldersProvider folders,
     ILogger<OrphanAvatarCleanupJob> logger) : IBackgroundJob
 {

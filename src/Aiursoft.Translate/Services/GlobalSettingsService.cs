@@ -9,7 +9,7 @@ using Microsoft.Extensions.Caching.Memory;
 namespace Aiursoft.Translate.Services;
 
 public class GlobalSettingsService(
-    TemplateDbContext dbContext, 
+    TranslateDbContext dbContext, 
     IConfiguration configuration,
     StorageService storageService,
     IMemoryCache cache) : IScopedDependency

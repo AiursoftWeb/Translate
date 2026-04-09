@@ -6,7 +6,7 @@ namespace Aiursoft.Translate.Sqlite;
 
 [ExcludeFromCodeCoverage]
 
-public class SqliteContext(DbContextOptions<SqliteContext> options) : TemplateDbContext(options)
+public class SqliteContext(DbContextOptions<SqliteContext> options) : TranslateDbContext(options)
 {
     public override Task<bool> CanConnectAsync()
     {

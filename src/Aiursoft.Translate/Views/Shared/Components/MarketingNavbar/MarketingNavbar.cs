@@ -13,6 +13,7 @@ public class MarketingNavbar(
     {
         model ??= new MarketingNavbarViewModel();
         model.ProjectName = await globalSettingsService.GetSettingValueAsync(SettingsMap.ProjectName);
+        model.ProjectSlogan = await globalSettingsService.GetSettingValueAsync(SettingsMap.ProjectSlogan);
         var logoPath = await globalSettingsService.GetSettingValueAsync(SettingsMap.ProjectLogo);
         if (!string.IsNullOrWhiteSpace(logoPath))
         {

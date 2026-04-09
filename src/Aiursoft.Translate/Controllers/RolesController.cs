@@ -19,7 +19,7 @@ namespace Aiursoft.Translate.Controllers;
 [LimitPerMin]
 public class RolesController(
     UserManager<User> userManager,
-    TemplateDbContext context,
+    TranslateDbContext context,
     RoleManager<IdentityRole> roleManager)
     : Controller
 {
