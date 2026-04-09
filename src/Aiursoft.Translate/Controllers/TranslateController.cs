@@ -1,3 +1,4 @@
+using Aiursoft.Translate.Configuration;
 using Aiursoft.Translate.Models.TranslateViewModels;
 using Aiursoft.Translate.Services;
 using Aiursoft.Dotlang.Shared;
@@ -8,7 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace Aiursoft.Translate.Controllers;
 
 [LimitPerMin]
-public class TranslateController(OllamaBasedTranslatorEngine translator, GuestTranslateRateLimiter rateLimiter) : Controller
+public class TranslateController(
+    OllamaBasedTranslatorEngine translator, 
+    GuestTranslateRateLimiter rateLimiter,
+    GlobalSettingsService globalSettingsService) : Controller
 {
     [Route("")]
     [Route("Translate")]
@@ -21,9 +25,13 @@ public class TranslateController(OllamaBasedTranslatorEngine translator, GuestTr
         CascadedLinksOrder = 1,
         LinkText = "Translate",
         LinkOrder = 1)]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return this.StackView(new IndexViewModel());
+        var model = new IndexViewModel
+        {
+            ProjectSlogan = await globalSettingsService.GetSettingValueAsync(SettingsMap.ProjectSlogan)
+        };
+        return this.StackView(model);
     }
 
     [RenderInNavBar(
@@ -34,9 +42,13 @@ public class TranslateController(OllamaBasedTranslatorEngine translator, GuestTr
         CascadedLinksOrder = 1,
         LinkText = "Self Host",
         LinkOrder = 1)]
-    public IActionResult SelfHost()
+    public async Task<IActionResult> SelfHost()
     {
-        return this.StackView(new Models.HomeViewModels.SelfHostViewModel());
+        var model = new Models.HomeViewModels.SelfHostViewModel
+        {
+            ProjectSlogan = await globalSettingsService.GetSettingValueAsync(SettingsMap.ProjectSlogan)
+        };
+        return this.StackView(model);
     }
 
     [HttpPost]

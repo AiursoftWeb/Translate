@@ -86,7 +86,7 @@ public class GlobalSettingsTests : TestBase
     {
         using var scope = Server!.Services.CreateScope();
         var settingsService = scope.ServiceProvider.GetRequiredService<GlobalSettingsService>();
-        var dbContext = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+        var dbContext = scope.ServiceProvider.GetRequiredService<TranslateDbContext>();
         
         // Since it's not in Definitions, we can't update it via service easily without it being defined.
         // But we can test hitting the database for an existing key after clearing cache.
@@ -141,7 +141,7 @@ public class GlobalSettingsTests : TestBase
         try
         {
             var server = await AppAsync<Startup>([], port: port);
-            await server.UpdateDbAsync<TemplateDbContext>();
+            await server.UpdateDbAsync<TranslateDbContext>();
             await server.StartAsync();
 
             using var scope = server.Services.CreateScope();

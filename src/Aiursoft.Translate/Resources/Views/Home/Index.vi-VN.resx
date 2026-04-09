@@ -36,8 +36,8 @@
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Một nền tảng hiện đại, giàu tính năng và có khả năng mở rộng cao cho ứng dụng web tiếp theo của bạn.</value>
   </data>
-  <data name="Achieve more with Aiursoft Template" xml:space="preserve">
-    <value>Đạt được nhiều hơn với Aiursoft Template</value>
+  <data name="Achieve more with Aiursoft Translate" xml:space="preserve">
+    <value>Đạt được nhiều hơn với Aiursoft Translate</value>
   </data>
   <data name="Admin site included" xml:space="preserve">
     <value>Bao gồm trang quản trị</value>
@@ -51,11 +51,11 @@
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>Dịch Thuật Hỗ Trợ Bởi AI</value>
   </data>
-  <data name="Aiursoft Template" xml:space="preserve">
-    <value>Aiursoft Template</value>
+  <data name="Aiursoft Translate" xml:space="preserve">
+    <value>Aiursoft Translate</value>
   </data>
-  <data name="Aiursoft Template is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
-    <value>Aiursoft Template là lựa chọn tối ưu cho các dự án doanh nghiệp! Nó được xây dựng cho nhà phát triển, nhẹ nhàng nhưng mạnh mẽ. Chúng ta có thể bỏ qua tất cả các mã mẫu cho xác thực và quản lý người dùng.</value>
+  <data name="Aiursoft Translate is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
+    <value>Aiursoft Translate là lựa chọn tối ưu cho các dự án doanh nghiệp! Nó được xây dựng cho nhà phát triển, nhẹ nhàng nhưng mạnh mẽ. Chúng ta có thể bỏ qua tất cả các mã mẫu cho xác thực và quản lý người dùng.</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Tất cả các dependency đều được tự động đăng ký và luôn sẵn sàng thông qua constructor injection.</value>
@@ -126,8 +126,8 @@
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>Xây dựng dành cho các kỹ sư quan tâm đến chất lượng.</value>
   </data>
-  <data name="Built with Aiursoft Template" xml:space="preserve">
-    <value>Xây dựng với Aiursoft Template</value>
+  <data name="Built with Aiursoft Translate" xml:space="preserve">
+    <value>Xây dựng với Aiursoft Translate</value>
   </data>
   <data name="Built with enterprise-grade yet easy-to-learn native C#." xml:space="preserve">
     <value>Được xây dựng với C# bản địa cấp doanh nghiệp nhưng dễ học.</value>
@@ -381,8 +381,8 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>Làm thế nào để tôi triển khai ứng dụng của mình?</value>
   </data>
-  <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
-    <value>Tôi tạo ra Aiursoft Template vì đã chán việc phải thiết lập lại các pipeline Auth, Log và CI/CD giống nhau cho mỗi dự án doanh nghiệp mới. Đây không chỉ đơn thuần là một mẫu; đây là những nguyên tắc tốt nhất đã được tinh luyện qua nhiều năm hoạt động trong môi trường sản xuất có tải cao. Nó giúp đội của tôi bỏ qua phần thiết lập nhàm chán và nhảy thẳng vào logic kinh doanh.</value>
+  <data name="I built Aiursoft Translate because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
+    <value>Tôi tạo ra Aiursoft Translate vì đã chán việc phải thiết lập lại các pipeline Auth, Log và CI/CD giống nhau cho mỗi dự án doanh nghiệp mới. Đây không chỉ đơn thuần là một mẫu; đây là những nguyên tắc tốt nhất đã được tinh luyện qua nhiều năm hoạt động trong môi trường sản xuất có tải cao. Nó giúp đội của tôi bỏ qua phần thiết lập nhàm chán và nhảy thẳng vào logic kinh doanh.</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>Hỗ trợ IDE</value>
@@ -408,8 +408,8 @@
   <data name="is Free Software" xml:space="preserve">
     <value>là Phần mềm miễn phí</value>
   </data>
-  <data name="Is it free to use Aiursoft Template?" xml:space="preserve">
-    <value>Có phải Aiursoft Template được sử dụng miễn phí không?</value>
+  <data name="Is it free to use Aiursoft Translate?" xml:space="preserve">
+    <value>Có phải Aiursoft Translate được sử dụng miễn phí không?</value>
   </data>
   <data name="Join Discussions" xml:space="preserve">
     <value>Tham gia thảo luận</value>
@@ -687,17 +687,17 @@
   <data name="What our developers say" xml:space="preserve">
     <value>Những gì nhà phát triển của chúng tôi nói</value>
   </data>
-  <data name="Why choose Aiursoft Template?" xml:space="preserve">
-    <value>Tại sao nên chọn Aiursoft Template?</value>
+  <data name="Why choose Aiursoft Translate?" xml:space="preserve">
+    <value>Tại sao nên chọn Aiursoft Translate?</value>
   </data>
-  <data name="Why use the Aiursoft Template?" xml:space="preserve">
+  <data name="Why use the Aiursoft Translate?" xml:space="preserve">
     <value>Tại sao nên sử dụng Mẫu Aiursoft?</value>
   </data>
   <data name="Win/Lin/Mac" xml:space="preserve">
     <value>Win/Lin/Mac</value>
   </data>
-  <data name="Yes, Aiursoft Template is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
-    <value>Vâng, Aiursoft Template hoàn toàn miễn phí và mã nguồn mở theo Giấy phép MIT. Bạn có thể sử dụng nó cho các dự án cá nhân và thương mại mà không mất bất kỳ chi phí nào.</value>
+  <data name="Yes, Aiursoft Translate is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
+    <value>Vâng, Aiursoft Translate hoàn toàn miễn phí và mã nguồn mở theo Giấy phép MIT. Bạn có thể sử dụng nó cho các dự án cá nhân và thương mại mà không mất bất kỳ chi phí nào.</value>
   </data>
   <data name="You can get community support via GitHub Discussions. Please visit our" xml:space="preserve">
     <value>Bạn có thể nhận hỗ trợ từ cộng đồng thông qua GitHub Discussions. Vui lòng truy cập</value>

@@ -19,7 +19,7 @@ namespace Aiursoft.Translate.Controllers;
 public class UsersController(
     RoleManager<IdentityRole> roleManager,
     UserManager<User> userManager,
-    TemplateDbContext context)
+    TranslateDbContext context)
     : Controller
 {
     [Authorize(Policy = AppPermissionNames.CanReadUsers)]

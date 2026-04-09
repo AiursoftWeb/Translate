@@ -36,8 +36,8 @@
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Sebuah fondasi yang modern, kaya fitur, dan sangat dapat diperluas untuk aplikasi web Anda berikutnya.</value>
   </data>
-  <data name="Achieve more with Aiursoft Template" xml:space="preserve">
-    <value>Raih lebih banyak dengan Aiursoft Template</value>
+  <data name="Achieve more with Aiursoft Translate" xml:space="preserve">
+    <value>Raih lebih banyak dengan Aiursoft Translate</value>
   </data>
   <data name="Admin site included" xml:space="preserve">
     <value>Situs admin disertakan</value>
@@ -51,11 +51,11 @@
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>Terjemahan Berbasis AI</value>
   </data>
-  <data name="Aiursoft Template" xml:space="preserve">
-    <value>Aiursoft Template</value>
+  <data name="Aiursoft Translate" xml:space="preserve">
+    <value>Aiursoft Translate</value>
   </data>
-  <data name="Aiursoft Template is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
-    <value>Aiursoft Template adalah pilihan utama kami untuk proyek perusahaan! Template ini dibangun untuk pengembang, ringan namun bertenaga. Kami bisa melewati semua kode boilerplate untuk autentikasi dan manajemen pengguna.</value>
+  <data name="Aiursoft Translate is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
+    <value>Aiursoft Translate adalah pilihan utama kami untuk proyek perusahaan! Template ini dibangun untuk pengembang, ringan namun bertenaga. Kami bisa melewati semua kode boilerplate untuk autentikasi dan manajemen pengguna.</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Semua dependensi terdaftar secara otomatis dan selalu tersedia melalui constructor injection.</value>
@@ -126,7 +126,7 @@
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>Dibuat untuk insinyur yang peduli pada kualitas.</value>
   </data>
-  <data name="Built with Aiursoft Template" xml:space="preserve">
+  <data name="Built with Aiursoft Translate" xml:space="preserve">
     <value>Dibangun dengan Template Aiursoft</value>
   </data>
   <data name="Built with enterprise-grade yet easy-to-learn native C#." xml:space="preserve">
@@ -381,8 +381,8 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>Bagaimana cara saya menerapkan aplikasi saya?</value>
   </data>
-  <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
-    <value>Saya membuat Aiursoft Template karena saya lelah mengatur pipeline Auth, Log, dan CI/CD yang sama untuk setiap proyek perusahaan baru. Ini bukan sekadar template; ini adalah praktik terbaik yang telah terkristalisasi dari bertahun-tahun lingkungan produksi dengan koneksi tinggi. Ini memungkinkan tim saya melewati pengaturan yang membosankan dan langsung fokus pada logika bisnis.</value>
+  <data name="I built Aiursoft Translate because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
+    <value>Saya membuat Aiursoft Translate karena saya lelah mengatur pipeline Auth, Log, dan CI/CD yang sama untuk setiap proyek perusahaan baru. Ini bukan sekadar template; ini adalah praktik terbaik yang telah terkristalisasi dari bertahun-tahun lingkungan produksi dengan koneksi tinggi. Ini memungkinkan tim saya melewati pengaturan yang membosankan dan langsung fokus pada logika bisnis.</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>Dukungan IDE</value>
@@ -408,8 +408,8 @@
   <data name="is Free Software" xml:space="preserve">
     <value>adalah Perangkat Lunak Bebas</value>
   </data>
-  <data name="Is it free to use Aiursoft Template?" xml:space="preserve">
-    <value>Apakah Aiursoft Template gratis digunakan?</value>
+  <data name="Is it free to use Aiursoft Translate?" xml:space="preserve">
+    <value>Apakah Aiursoft Translate gratis digunakan?</value>
   </data>
   <data name="Join Discussions" xml:space="preserve">
     <value>Bergabung dalam Diskusi</value>
@@ -687,17 +687,17 @@
   <data name="What our developers say" xml:space="preserve">
     <value>Apa Kata Developer Kami</value>
   </data>
-  <data name="Why choose Aiursoft Template?" xml:space="preserve">
-    <value>Mengapa memilih Aiursoft Template?</value>
+  <data name="Why choose Aiursoft Translate?" xml:space="preserve">
+    <value>Mengapa memilih Aiursoft Translate?</value>
   </data>
-  <data name="Why use the Aiursoft Template?" xml:space="preserve">
+  <data name="Why use the Aiursoft Translate?" xml:space="preserve">
     <value>Mengapa Menggunakan Template Aiursoft?</value>
   </data>
   <data name="Win/Lin/Mac" xml:space="preserve">
     <value>Win/Lin/Mac</value>
   </data>
-  <data name="Yes, Aiursoft Template is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
-    <value>Ya, Aiursoft Template sepenuhnya gratis dan open-source di bawah Lisensi MIT. Anda dapat menggunakannya untuk proyek pribadi dan komersial tanpa biaya apa pun.</value>
+  <data name="Yes, Aiursoft Translate is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
+    <value>Ya, Aiursoft Translate sepenuhnya gratis dan open-source di bawah Lisensi MIT. Anda dapat menggunakannya untuk proyek pribadi dan komersial tanpa biaya apa pun.</value>
   </data>
   <data name="You can get community support via GitHub Discussions. Please visit our" xml:space="preserve">
     <value>Anda bisa mendapatkan dukungan komunitas melalui GitHub Discussions. Silakan kunjungi</value>

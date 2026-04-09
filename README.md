@@ -1,4 +1,4 @@
-# Translate - A sample project
+# Aiursoft Translate
 
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.com/aiursoft/translate/-/blob/master/LICENSE)
 [![Pipeline stat](https://gitlab.aiursoft.com/aiursoft/translate/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/aiursoft/translate/-/pipelines)
@@ -7,31 +7,11 @@
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Ftranslate.aiursoft.com)](https://translate.aiursoft.com)
 [![Docker](https://img.shields.io/docker/pulls/aiursoft/translate.svg)](https://hub.docker.com/r/aiursoft/translate)
 
-Translate is a sample project.
+Empower your translations with local AI: Private, flexible, and faithful.
 
 ![screenshot](./screenshot.png)
 
 Default user name is `admin@default.com` and default password is `admin123`.
-
-## Projects using Aiursoft Translate
-
-* [Stathub](https://gitlab.aiursoft.com/aiursoft/stathub)
-* [MarkToHtml](https://gitlab.aiursoft.com/aiursoft/marktohtml)
-* [MusicTools](https://gitlab.aiursoft.com/aiursoft/musictools)
-* [AnduinOS Home](https://gitlab.aiursoft.com/anduin/AnduinOS-Home)
-* [Manhours](https://gitlab.aiursoft.com/aiursoft/manhours)
-* [Tracer](https://gitlab.aiursoft.com/aiursoft/tracer)
-* [Warp](https://gitlab.aiursoft.com/aiursoft/warp)
-* [AiurDrive](https://gitlab.aiursoft.com/aiursoft/aiurdrive)
-* [EmployeeC enter](https://gitlab.aiursoft.com/aiursoft/employeecenter)
-* [Git Mirror Server](https://gitlab.aiursoft.com/aiursoft/gitmirrorserver)
-* [CppRunner](https://gitlab.aiursoft.com/aiursoft/cpprunner)
-* [Ollama Gateway](https://gitlab.aiursoft.com/aiursoft/ollamagateway)
-* [Polls](https://gitlab.aiursoft.com/aiursoft/polls)
-* [WeChatExam](https://gitlab.aiursoft.com/aiursoft/wechatexam)
-* [MusicExam](https://gitlab.aiursoft.com/aiursoft/musicexam)
-* [CoprHome](https://gitlab.aiursoft.com/aiursoft/corphome)
-* [Events Recorder](https://gitlab.aiursoft.com/aiursoft/eventsrecorder)
 
 ## Try
 

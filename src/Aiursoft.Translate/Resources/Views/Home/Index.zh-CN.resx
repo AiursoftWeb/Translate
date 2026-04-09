@@ -36,8 +36,8 @@
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>一个现代化、功能丰富且高度可扩展的基础框架，为您的下一个Web应用程序提供强大支持。</value>
   </data>
-  <data name="Achieve more with Aiursoft Template" xml:space="preserve">
-    <value>借助 Aiursoft Template 成就更多可能</value>
+  <data name="Achieve more with Aiursoft Translate" xml:space="preserve">
+    <value>借助 Aiursoft Translate 成就更多可能</value>
   </data>
   <data name="Admin site included" xml:space="preserve">
     <value>包含管理站点</value>
@@ -51,11 +51,11 @@
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>AI 驱动翻译</value>
   </data>
-  <data name="Aiursoft Template" xml:space="preserve">
-    <value>Aiursoft Template</value>
+  <data name="Aiursoft Translate" xml:space="preserve">
+    <value>Aiursoft Translate</value>
   </data>
-  <data name="Aiursoft Template is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
-    <value>Aiursoft Template 是我们企业项目的最终选择！它专为开发者打造，轻量级却功能强大。我们可以跳过所有身份验证和用户管理的样板代码。</value>
+  <data name="Aiursoft Translate is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
+    <value>Aiursoft Translate 是我们企业项目的最终选择！它专为开发者打造，轻量级却功能强大。我们可以跳过所有身份验证和用户管理的样板代码。</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>所有依赖项均自动注册，并始终可通过构造函数注入方式使用。</value>
@@ -126,7 +126,7 @@
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>专为追求卓越的工程师打造。</value>
   </data>
-  <data name="Built with Aiursoft Template" xml:space="preserve">
+  <data name="Built with Aiursoft Translate" xml:space="preserve">
     <value>基于 Aiursoft 模板构建</value>
   </data>
   <data name="Built with enterprise-grade yet easy-to-learn native C#." xml:space="preserve">
@@ -381,8 +381,8 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>如何部署我的应用程序？</value>
   </data>
-  <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
-    <value>&quot;我构建 Aiursoft Template 的初衷，是厌倦了为每个企业级项目重复搭建认证、日志和 CI/CD 流水线。这不仅仅是一个模板，它是多年高并发生产环境最佳实践的结晶。它让我的团队能够跳过繁琐的基础设施搭建，直击业务逻辑核心。&quot;</value>
+  <data name="I built Aiursoft Translate because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
+    <value>&quot;我构建 Aiursoft Translate 的初衷，是厌倦了为每个企业级项目重复搭建认证、日志和 CI/CD 流水线。这不仅仅是一个模板，它是多年高并发生产环境最佳实践的结晶。它让我的团队能够跳过繁琐的基础设施搭建，直击业务逻辑核心。&quot;</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>IDE 支持</value>
@@ -408,8 +408,8 @@
   <data name="is Free Software" xml:space="preserve">
     <value>是自由软件</value>
   </data>
-  <data name="Is it free to use Aiursoft Template?" xml:space="preserve">
-    <value>使用 Aiursoft Template 是否免费？</value>
+  <data name="Is it free to use Aiursoft Translate?" xml:space="preserve">
+    <value>使用 Aiursoft Translate 是否免费？</value>
   </data>
   <data name="Join Discussions" xml:space="preserve">
     <value>参与讨论</value>
@@ -687,17 +687,17 @@
   <data name="What our developers say" xml:space="preserve">
     <value>我们的开发者怎么说</value>
   </data>
-  <data name="Why choose Aiursoft Template?" xml:space="preserve">
-    <value>为何选择 Aiursoft Template？</value>
+  <data name="Why choose Aiursoft Translate?" xml:space="preserve">
+    <value>为何选择 Aiursoft Translate？</value>
   </data>
-  <data name="Why use the Aiursoft Template?" xml:space="preserve">
+  <data name="Why use the Aiursoft Translate?" xml:space="preserve">
     <value>为何选择 Aiursoft 模板？</value>
   </data>
   <data name="Win/Lin/Mac" xml:space="preserve">
     <value>Windows/Linux/macOS</value>
   </data>
-  <data name="Yes, Aiursoft Template is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
-    <value>是的，Aiursoft Template 在 MIT 许可证下完全免费且开源。您可以在个人和商业项目中免费使用它，无需任何费用。</value>
+  <data name="Yes, Aiursoft Translate is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
+    <value>是的，Aiursoft Translate 在 MIT 许可证下完全免费且开源。您可以在个人和商业项目中免费使用它，无需任何费用。</value>
   </data>
   <data name="You can get community support via GitHub Discussions. Please visit our" xml:space="preserve">
     <value>您可以通过 GitHub Discussions 获取社区支持。请访问我们的</value>

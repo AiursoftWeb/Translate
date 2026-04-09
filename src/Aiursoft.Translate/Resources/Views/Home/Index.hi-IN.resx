@@ -36,7 +36,7 @@
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>आपके अगले वेब एप्लिकेशन के लिए एक आधुनिक, सुविधा-संपन्न, और अत्यधिक विस्तार योग्य आधारशिला।</value>
   </data>
-  <data name="Achieve more with Aiursoft Template" xml:space="preserve">
+  <data name="Achieve more with Aiursoft Translate" xml:space="preserve">
     <value>Aiursoft टेम्पलेट के साथ और अधिक हासिल करें</value>
   </data>
   <data name="Admin site included" xml:space="preserve">
@@ -51,11 +51,11 @@
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>AI-संचालित अनुवाद</value>
   </data>
-  <data name="Aiursoft Template" xml:space="preserve">
-    <value>Aiursoft Template</value>
+  <data name="Aiursoft Translate" xml:space="preserve">
+    <value>Aiursoft Translate</value>
   </data>
-  <data name="Aiursoft Template is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
-    <value>Aiursoft Template उद्यम परियोजनाओं के लिए हमारा सर्वोत्तम विकल्प है! यह डेवलपर्स के लिए बनाया गया है और हल्का होने के साथ-साथ शक्तिशाली भी है। हम प्रमाणीकरण और उपयोगकर्ता प्रबंधन के लिए सभी बॉयलरप्लेट को छोड़ सकते हैं।</value>
+  <data name="Aiursoft Translate is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
+    <value>Aiursoft Translate उद्यम परियोजनाओं के लिए हमारा सर्वोत्तम विकल्प है! यह डेवलपर्स के लिए बनाया गया है और हल्का होने के साथ-साथ शक्तिशाली भी है। हम प्रमाणीकरण और उपयोगकर्ता प्रबंधन के लिए सभी बॉयलरप्लेट को छोड़ सकते हैं।</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>सभी निर्भरताएँ स्वचालित रूप से पंजीकृत होती हैं और कंस्ट्रक्टर इंजेक्शन के माध्यम से हमेशा उपलब्ध रहती हैं।</value>
@@ -126,8 +126,8 @@
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>गुणवत्ता के प्रति चिंतित इंजीनियरों के लिए बनाया गया है।</value>
   </data>
-  <data name="Built with Aiursoft Template" xml:space="preserve">
-    <value>Aiursoft Template के साथ बनाया गया</value>
+  <data name="Built with Aiursoft Translate" xml:space="preserve">
+    <value>Aiursoft Translate के साथ बनाया गया</value>
   </data>
   <data name="Built with enterprise-grade yet easy-to-learn native C#." xml:space="preserve">
     <value>एंटरप्राइज-ग्रेड लेकिन आसानी से सीखने वाले नेटिव C# के साथ बनाया गया है।</value>
@@ -381,7 +381,7 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>मैं अपने एप्लिकेशन को कैसे डिप्लॉय करूं?</value>
   </data>
-  <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
+  <data name="I built Aiursoft Translate because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
     <value>मैंने एआईयूरसॉफ्ट टेम्पलेट बनाया क्योंकि मुझे हर नए एंटरप्राइज प्रोजेक्ट के लिए एक ही ऑथ, लॉग, और CI/CD पाइपलाइन की सेटअप करने में थक गया था। यह सिर्फ एक टेम्पलेट नहीं है; यह उच्च-प्रतिक्रिया उत्पादन वातावरणों में कई सालों के सर्वोत्तम अभ्यासों के संकलित रूप है। यह मेरी टीम को ऊबाहट भरी सेटअप के बाहर छोड़कर व्यवसाय तर्क पर तुरंत कूदने की अनुमति देता है।</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
@@ -408,8 +408,8 @@
   <data name="is Free Software" xml:space="preserve">
     <value>मुक्त सॉफ्टवेयर है</value>
   </data>
-  <data name="Is it free to use Aiursoft Template?" xml:space="preserve">
-    <value>क्या Aiursoft Template का उपयोग करना मुफ़्त है?</value>
+  <data name="Is it free to use Aiursoft Translate?" xml:space="preserve">
+    <value>क्या Aiursoft Translate का उपयोग करना मुफ़्त है?</value>
   </data>
   <data name="Join Discussions" xml:space="preserve">
     <value>चर्चाओं में शामिल हों</value>
@@ -687,17 +687,17 @@
   <data name="What our developers say" xml:space="preserve">
     <value>हमारे डेवलपर्स क्या कहते हैं</value>
   </data>
-  <data name="Why choose Aiursoft Template?" xml:space="preserve">
+  <data name="Why choose Aiursoft Translate?" xml:space="preserve">
     <value>Aiursoft टेम्पलेट क्यों चुनें?</value>
   </data>
-  <data name="Why use the Aiursoft Template?" xml:space="preserve">
+  <data name="Why use the Aiursoft Translate?" xml:space="preserve">
     <value>Aiursoft टेम्पलेट का उपयोग क्यों करें?</value>
   </data>
   <data name="Win/Lin/Mac" xml:space="preserve">
     <value>विंडोज़/लिनक्स/मैक</value>
   </data>
-  <data name="Yes, Aiursoft Template is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
-    <value>हाँ, Aiursoft Template MIT लाइसेंस के तहत पूरी तरह से मुफ़्त और ओपन-सोर्स है। आप इसे किसी भी लागत के बिना व्यक्तिगत और व्यावसायिक परियोजनाओं के लिए उपयोग कर सकते हैं।</value>
+  <data name="Yes, Aiursoft Translate is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
+    <value>हाँ, Aiursoft Translate MIT लाइसेंस के तहत पूरी तरह से मुफ़्त और ओपन-सोर्स है। आप इसे किसी भी लागत के बिना व्यक्तिगत और व्यावसायिक परियोजनाओं के लिए उपयोग कर सकते हैं।</value>
   </data>
   <data name="You can get community support via GitHub Discussions. Please visit our" xml:space="preserve">
     <value>आप GitHub Discussions के माध्यम से सामुदायिक सहायता प्राप्त कर सकते हैं। कृपया हमारे</value>

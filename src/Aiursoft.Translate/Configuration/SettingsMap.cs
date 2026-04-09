@@ -5,6 +5,7 @@ namespace Aiursoft.Translate.Configuration;
 public class SettingsMap
 {
     public const string ProjectName = "ProjectName";
+    public const string ProjectSlogan = "ProjectSlogan";
     public const string BrandName = "BrandName";
     public const string BrandHomeUrl = "BrandHomeUrl";
     public const string ProjectLogo = "ProjectLogo";
@@ -29,6 +30,14 @@ public class SettingsMap
             Description = Localizer["The name of the project displayed in the frontend."],
             Type = SettingType.Text,
             DefaultValue = "Aiursoft Translate"
+        },
+        new GlobalSettingDefinition
+        {
+            Key = ProjectSlogan,
+            Name = Localizer["Project Slogan"],
+            Description = Localizer["The slogan of the project displayed in the frontend."],
+            Type = SettingType.Text,
+            DefaultValue = "Empower your translations with local AI: Private, flexible, and faithful."
         },
         new GlobalSettingDefinition
         {

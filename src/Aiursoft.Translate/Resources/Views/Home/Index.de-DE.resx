@@ -36,8 +36,8 @@
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Eine moderne, funktionsreiche und hochgradig erweiterbare Grundlage für Ihre nächste Webanwendung.</value>
   </data>
-  <data name="Achieve more with Aiursoft Template" xml:space="preserve">
-    <value>Erreichen Sie mehr mit Aiursoft Template</value>
+  <data name="Achieve more with Aiursoft Translate" xml:space="preserve">
+    <value>Erreichen Sie mehr mit Aiursoft Translate</value>
   </data>
   <data name="Admin site included" xml:space="preserve">
     <value>Admin-Site enthalten</value>
@@ -51,11 +51,11 @@
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>KI-gestützte Übersetzungen</value>
   </data>
-  <data name="Aiursoft Template" xml:space="preserve">
-    <value>Aiursoft Template</value>
+  <data name="Aiursoft Translate" xml:space="preserve">
+    <value>Aiursoft Translate</value>
   </data>
-  <data name="Aiursoft Template is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
-    <value>Aiursoft Template ist unsere endgültige Wahl für Unternehmensprojekte! Er wurde für Entwickler entwickelt und ist leichtgewichtig, aber dennoch leistungsstark. Wir können den gesamten Standardcode für Authentifizierung und Benutzerverwaltung überspringen.</value>
+  <data name="Aiursoft Translate is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
+    <value>Aiursoft Translate ist unsere endgültige Wahl für Unternehmensprojekte! Er wurde für Entwickler entwickelt und ist leichtgewichtig, aber dennoch leistungsstark. Wir können den gesamten Standardcode für Authentifizierung und Benutzerverwaltung überspringen.</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Alle Abhängigkeiten werden automatisch registriert und sind stets über Constructor Injection verfügbar.</value>
@@ -126,8 +126,8 @@
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>Für Ingenieure, die Wert auf Qualität legen.</value>
   </data>
-  <data name="Built with Aiursoft Template" xml:space="preserve">
-    <value>Erstellt mit Aiursoft Template</value>
+  <data name="Built with Aiursoft Translate" xml:space="preserve">
+    <value>Erstellt mit Aiursoft Translate</value>
   </data>
   <data name="Built with enterprise-grade yet easy-to-learn native C#." xml:space="preserve">
     <value>Erstellt mit Unternehmensqualität, aber dennoch einfach zu erlernendem nativem C#.</value>
@@ -381,8 +381,8 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>Wie stelle ich meine Anwendung bereit?</value>
   </data>
-  <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
-    <value>Ich habe Aiursoft Template erstellt, weil ich es satt hatte, für jedes neue Enterprise-Projekt immer wieder die gleichen Auth-, Log- und CI/CD-Pipelines einzurichten. Das ist nicht einfach nur eine Vorlage; es sind die kristallisierten Best Practices aus Jahren mit Hochdurchsatz-Produktionsumgebungen. Es ermöglicht meinem Team, die langweilige Einrichtung zu überspringen und direkt mit der Geschäftslogik zu beginnen.</value>
+  <data name="I built Aiursoft Translate because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
+    <value>Ich habe Aiursoft Translate erstellt, weil ich es satt hatte, für jedes neue Enterprise-Projekt immer wieder die gleichen Auth-, Log- und CI/CD-Pipelines einzurichten. Das ist nicht einfach nur eine Vorlage; es sind die kristallisierten Best Practices aus Jahren mit Hochdurchsatz-Produktionsumgebungen. Es ermöglicht meinem Team, die langweilige Einrichtung zu überspringen und direkt mit der Geschäftslogik zu beginnen.</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>IDE-Unterstützung</value>
@@ -408,8 +408,8 @@
   <data name="is Free Software" xml:space="preserve">
     <value>ist freie Software</value>
   </data>
-  <data name="Is it free to use Aiursoft Template?" xml:space="preserve">
-    <value>Ist die Nutzung von Aiursoft Template kostenlos?</value>
+  <data name="Is it free to use Aiursoft Translate?" xml:space="preserve">
+    <value>Ist die Nutzung von Aiursoft Translate kostenlos?</value>
   </data>
   <data name="Join Discussions" xml:space="preserve">
     <value>An Diskussionen teilnehmen</value>
@@ -687,17 +687,17 @@
   <data name="What our developers say" xml:space="preserve">
     <value>Was unsere Entwickler sagen</value>
   </data>
-  <data name="Why choose Aiursoft Template?" xml:space="preserve">
-    <value>Warum Aiursoft Template wählen?</value>
+  <data name="Why choose Aiursoft Translate?" xml:space="preserve">
+    <value>Warum Aiursoft Translate wählen?</value>
   </data>
-  <data name="Why use the Aiursoft Template?" xml:space="preserve">
-    <value>Warum das Aiursoft Template verwenden?</value>
+  <data name="Why use the Aiursoft Translate?" xml:space="preserve">
+    <value>Warum das Aiursoft Translate verwenden?</value>
   </data>
   <data name="Win/Lin/Mac" xml:space="preserve">
     <value>Win/Lin/Mac</value>
   </data>
-  <data name="Yes, Aiursoft Template is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
-    <value>Ja, das Aiursoft Template ist unter der MIT-Lizenz vollständig kostenlos und Open-Source. Sie können es für private und kommerzielle Projekte ohne jegliche Kosten verwenden.</value>
+  <data name="Yes, Aiursoft Translate is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
+    <value>Ja, das Aiursoft Translate ist unter der MIT-Lizenz vollständig kostenlos und Open-Source. Sie können es für private und kommerzielle Projekte ohne jegliche Kosten verwenden.</value>
   </data>
   <data name="You can get community support via GitHub Discussions. Please visit our" xml:space="preserve">
     <value>Sie können Community-Support über GitHub Discussions erhalten. Bitte besuchen Sie unsere</value>

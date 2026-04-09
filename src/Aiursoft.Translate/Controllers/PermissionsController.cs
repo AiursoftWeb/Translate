@@ -19,7 +19,7 @@ namespace Aiursoft.Translate.Controllers;
 [LimitPerMin]
 public class PermissionsController(
     RoleManager<IdentityRole> roleManager,
-    TemplateDbContext context)
+    TranslateDbContext context)
     : Controller
 {
     [Authorize(Policy = AppPermissionNames.CanReadPermissions)]

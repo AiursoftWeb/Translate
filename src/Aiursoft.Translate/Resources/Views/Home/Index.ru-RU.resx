@@ -36,8 +36,8 @@
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Современная, многофункциональная и легко расширяемая основа для вашего следующего веб-приложения.</value>
   </data>
-  <data name="Achieve more with Aiursoft Template" xml:space="preserve">
-    <value>Достигайте большего с Aiursoft Template</value>
+  <data name="Achieve more with Aiursoft Translate" xml:space="preserve">
+    <value>Достигайте большего с Aiursoft Translate</value>
   </data>
   <data name="Admin site included" xml:space="preserve">
     <value>Сайт администратора включен</value>
@@ -51,11 +51,11 @@
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>Переводы на основе ИИ</value>
   </data>
-  <data name="Aiursoft Template" xml:space="preserve">
-    <value>Aiursoft Template</value>
+  <data name="Aiursoft Translate" xml:space="preserve">
+    <value>Aiursoft Translate</value>
   </data>
-  <data name="Aiursoft Template is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
-    <value>Aiursoft Template — это наш окончательный выбор для корпоративных проектов! Он создан для разработчиков, легковесный, но мощный. Мы можем пропустить всю стандартную работу по аутентификации и управлению пользователями.</value>
+  <data name="Aiursoft Translate is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
+    <value>Aiursoft Translate — это наш окончательный выбор для корпоративных проектов! Он создан для разработчиков, легковесный, но мощный. Мы можем пропустить всю стандартную работу по аутентификации и управлению пользователями.</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Все зависимости автоматически регистрируются и всегда доступны через внедрение в конструктор.</value>
@@ -126,7 +126,7 @@
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>Создано для инженеров, которым важны качество.</value>
   </data>
-  <data name="Built with Aiursoft Template" xml:space="preserve">
+  <data name="Built with Aiursoft Translate" xml:space="preserve">
     <value>Создано с использованием шаблона Aiursoft</value>
   </data>
   <data name="Built with enterprise-grade yet easy-to-learn native C#." xml:space="preserve">
@@ -381,7 +381,7 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>Как развернуть моё приложение?</value>
   </data>
-  <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
+  <data name="I built Aiursoft Translate because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
     <value>Я создал шаблон Aiursoft, потому что устал настраивать одни и те же пайплайны Auth, Log и CI/CD для каждого нового корпоративного проекта. Это не просто шаблон; это кристаллизованные лучшие практики, накопленные за годы работы в высоконагруженных продакшн-средах. Это позволяет моей команде пропустить скучную настройку и сразу перейти к бизнес-логике.</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
@@ -408,8 +408,8 @@
   <data name="is Free Software" xml:space="preserve">
     <value>является бесплатным программным обеспечением</value>
   </data>
-  <data name="Is it free to use Aiursoft Template?" xml:space="preserve">
-    <value>Бесплатно ли использовать Aiursoft Template?</value>
+  <data name="Is it free to use Aiursoft Translate?" xml:space="preserve">
+    <value>Бесплатно ли использовать Aiursoft Translate?</value>
   </data>
   <data name="Join Discussions" xml:space="preserve">
     <value>Присоединиться к обсуждениям</value>
@@ -687,17 +687,17 @@
   <data name="What our developers say" xml:space="preserve">
     <value>Что говорят наши разработчики</value>
   </data>
-  <data name="Why choose Aiursoft Template?" xml:space="preserve">
-    <value>Почему выбрать Aiursoft Template?</value>
+  <data name="Why choose Aiursoft Translate?" xml:space="preserve">
+    <value>Почему выбрать Aiursoft Translate?</value>
   </data>
-  <data name="Why use the Aiursoft Template?" xml:space="preserve">
+  <data name="Why use the Aiursoft Translate?" xml:space="preserve">
     <value>Почему стоит использовать шаблон Aiursoft?</value>
   </data>
   <data name="Win/Lin/Mac" xml:space="preserve">
     <value>Win/Lin/Mac</value>
   </data>
-  <data name="Yes, Aiursoft Template is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
-    <value>Да, Aiursoft Template полностью бесплатен и имеет открытый исходный код под лицензией MIT. Вы можете использовать его для личных и коммерческих проектов без каких-либо затрат.</value>
+  <data name="Yes, Aiursoft Translate is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
+    <value>Да, Aiursoft Translate полностью бесплатен и имеет открытый исходный код под лицензией MIT. Вы можете использовать его для личных и коммерческих проектов без каких-либо затрат.</value>
   </data>
   <data name="You can get community support via GitHub Discussions. Please visit our" xml:space="preserve">
     <value>Вы можете получить поддержку сообщества через GitHub Discussions. Пожалуйста, посетите нашу</value>

@@ -36,7 +36,7 @@
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>현대적이고, 기능이 풍부하며, 매우 확장 가능한 기반을 제공하여 차세대 웹 애플리케이션을 구축할 수 있습니다.</value>
   </data>
-  <data name="Achieve more with Aiursoft Template" xml:space="preserve">
+  <data name="Achieve more with Aiursoft Translate" xml:space="preserve">
     <value>Aiursoft 템플릿으로 더 많은 성과를 이루세요</value>
   </data>
   <data name="Admin site included" xml:space="preserve">
@@ -51,11 +51,11 @@
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>AI 기반 번역</value>
   </data>
-  <data name="Aiursoft Template" xml:space="preserve">
-    <value>Aiursoft Template</value>
+  <data name="Aiursoft Translate" xml:space="preserve">
+    <value>Aiursoft Translate</value>
   </data>
-  <data name="Aiursoft Template is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
-    <value>Aiursoft Template은 엔터프라이즈 프로젝트를 위한 최적의 선택입니다! 개발자를 위해 제작되었으며 가볍지만 강력한 성능을 자랑합니다. 인증 및 사용자 관리와 관련된 모든 상용구 코드를 생략할 수 있습니다.</value>
+  <data name="Aiursoft Translate is our definitive choice for enterprise projects! It&apos;s built for developers and is lightweight yet powerful. We can skip all the boilerplate for authentication and user management." xml:space="preserve">
+    <value>Aiursoft Translate은 엔터프라이즈 프로젝트를 위한 최적의 선택입니다! 개발자를 위해 제작되었으며 가볍지만 강력한 성능을 자랑합니다. 인증 및 사용자 관리와 관련된 모든 상용구 코드를 생략할 수 있습니다.</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>모든 종속성은 자동으로 등록되며 생성자 주입을 통해 항상 사용할 수 있습니다.</value>
@@ -126,8 +126,8 @@
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>품질을 중시하는 엔지니어들을 위해 제작되었습니다.</value>
   </data>
-  <data name="Built with Aiursoft Template" xml:space="preserve">
-    <value>Aiursoft Template으로 제작됨</value>
+  <data name="Built with Aiursoft Translate" xml:space="preserve">
+    <value>Aiursoft Translate으로 제작됨</value>
   </data>
   <data name="Built with enterprise-grade yet easy-to-learn native C#." xml:space="preserve">
     <value>기업용 수준이지만 쉽게 배울 수 있는 네이티브 C#으로 제작됨</value>
@@ -381,8 +381,8 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>애플리케이션을 어떻게 배포하나요?</value>
   </data>
-  <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
-    <value>저는 매번 새로운 기업용 프로젝트를 시작할 때마다 동일한 인증(Auth), 로그(Log), CI/CD 파이프라인을 설정하는 데 지쳐서 Aiursoft Template을 만들었습니다. 이것은 단순한 템플릿이 아니라, 고성능 동시 처리 환경에서 수년간 쌓아온 최적의 실천 방법을 정제한 것입니다. 이 덕분에 제 팀은 지루한 설정 과정을 건너뛰고 바로 비즈니스 로직 개발에 집중할 수 있습니다.</value>
+  <data name="I built Aiursoft Translate because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
+    <value>저는 매번 새로운 기업용 프로젝트를 시작할 때마다 동일한 인증(Auth), 로그(Log), CI/CD 파이프라인을 설정하는 데 지쳐서 Aiursoft Translate을 만들었습니다. 이것은 단순한 템플릿이 아니라, 고성능 동시 처리 환경에서 수년간 쌓아온 최적의 실천 방법을 정제한 것입니다. 이 덕분에 제 팀은 지루한 설정 과정을 건너뛰고 바로 비즈니스 로직 개발에 집중할 수 있습니다.</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>IDE 지원</value>
@@ -408,8 +408,8 @@
   <data name="is Free Software" xml:space="preserve">
     <value>는 무료 소프트웨어입니다</value>
   </data>
-  <data name="Is it free to use Aiursoft Template?" xml:space="preserve">
-    <value>Aiursoft Template를 무료로 사용할 수 있나요?</value>
+  <data name="Is it free to use Aiursoft Translate?" xml:space="preserve">
+    <value>Aiursoft Translate를 무료로 사용할 수 있나요?</value>
   </data>
   <data name="Join Discussions" xml:space="preserve">
     <value>토론 참여하기</value>
@@ -687,17 +687,17 @@
   <data name="What our developers say" xml:space="preserve">
     <value>개발자들의 평가</value>
   </data>
-  <data name="Why choose Aiursoft Template?" xml:space="preserve">
-    <value>왜 Aiursoft Template 을 선택해야 합니까?</value>
+  <data name="Why choose Aiursoft Translate?" xml:space="preserve">
+    <value>왜 Aiursoft Translate 을 선택해야 합니까?</value>
   </data>
-  <data name="Why use the Aiursoft Template?" xml:space="preserve">
+  <data name="Why use the Aiursoft Translate?" xml:space="preserve">
     <value>Aiursoft 템플릿을 사용하는 이유</value>
   </data>
   <data name="Win/Lin/Mac" xml:space="preserve">
     <value>윈/린/맥</value>
   </data>
-  <data name="Yes, Aiursoft Template is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
-    <value>네, Aiursoft Template은 MIT 라이선스 하에 완전히 무료이며 오픈 소스입니다. 개인 및 상업 프로젝트에 무료로 사용하실 수 있습니다.</value>
+  <data name="Yes, Aiursoft Translate is completely free and open-source under the MIT License. You can use it for personal and commercial projects without any cost." xml:space="preserve">
+    <value>네, Aiursoft Translate은 MIT 라이선스 하에 완전히 무료이며 오픈 소스입니다. 개인 및 상업 프로젝트에 무료로 사용하실 수 있습니다.</value>
   </data>
   <data name="You can get community support via GitHub Discussions. Please visit our" xml:space="preserve">
     <value>GitHub Discussions를 통해 커뮤니티 지원을 받을 수 있습니다. 저희</value>

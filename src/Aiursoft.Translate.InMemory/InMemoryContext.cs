@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aiursoft.Translate.InMemory;
 
-public class InMemoryContext(DbContextOptions<InMemoryContext> options) : TemplateDbContext(options)
+public class InMemoryContext(DbContextOptions<InMemoryContext> options) : TranslateDbContext(options)
 {
     public override Task MigrateAsync(CancellationToken cancellationToken)
     {
