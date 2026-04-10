@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="About" xml:space="preserve">
+    <value>Σχετικά</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Πρόσβαση απαγορευμένη</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -135,6 +138,9 @@
   <data name="Roles" xml:space="preserve">
     <value>Ρόλοι</value>
   </data>
+  <data name="Self Host" xml:space="preserve">
+    <value>Αυτοεγκατάσταση</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Ρυθμίσεις</value>
   </data>
@@ -149,6 +155,12 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>Πρότυπο</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Εργαλεία</value>
+  </data>
+  <data name="Translate" xml:space="preserve">
+    <value>Μετάφραση</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>Μη Εξουσιοδοτημένος</value>

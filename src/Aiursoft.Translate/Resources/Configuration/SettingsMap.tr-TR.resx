@@ -45,14 +45,26 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Yanlış Numara</value>
   </data>
+  <data name="Guest Translate Limit (per hour)" xml:space="preserve">
+    <value>Misafir Çeviri Limiti (saat başına)</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>ICP Numarası</value>
+  </data>
+  <data name="Maximum number of translations per hour for anonymous (guest) users." xml:space="preserve">
+    <value>Anonim (misafir) kullanıcılar için saat başına yapılan çeviri sayısı sınırı.</value>
+  </data>
+  <data name="Maximum number of translations per hour for authenticated users." xml:space="preserve">
+    <value>Authenticated kullanıcılar için saat başına çeviri sayısı maksimumu.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Proje Logosu</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Proje Adı</value>
+  </data>
+  <data name="Project Slogan" xml:space="preserve">
+    <value>Proje Sloganı</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>Footer&apos;da gösterilen marka adı.</value>
@@ -65,6 +77,12 @@
   </data>
   <data name="The name of the project displayed in the frontend." xml:space="preserve">
     <value>Frontende görüntülenen proje adı.</value>
+  </data>
+  <data name="The slogan of the project displayed in the frontend." xml:space="preserve">
+    <value>Projenin önyüzde görüntülenen sloganı.</value>
+  </data>
+  <data name="User Translate Limit (per hour)" xml:space="preserve">
+    <value>Kullanıcı Çeviri Limiti (saat başına)</value>
   </data>
 
 </root>

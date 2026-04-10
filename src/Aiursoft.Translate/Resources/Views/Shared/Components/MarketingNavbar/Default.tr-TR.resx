@@ -30,8 +30,14 @@
   <data name="GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="GitLab" xml:space="preserve">
+    <value>GitLab</value>
+  </data>
   <data name="Source Code" xml:space="preserve">
     <value>Kaynak Kodu</value>
+  </data>
+  <data name="Try it now" xml:space="preserve">
+    <value>Şimdi dene</value>
   </data>
   <data name="Try the dashboard" xml:space="preserve">
     <value>Panoyu Deneyin</value>

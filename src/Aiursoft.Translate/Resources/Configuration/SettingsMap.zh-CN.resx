@@ -45,14 +45,26 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>占位数字</value>
   </data>
+  <data name="Guest Translate Limit (per hour)" xml:space="preserve">
+    <value>访客翻译限制（每小时）</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>ICP 备案号</value>
+  </data>
+  <data name="Maximum number of translations per hour for anonymous (guest) users." xml:space="preserve">
+    <value>匿名用户（访客）每小时的最大翻译次数。</value>
+  </data>
+  <data name="Maximum number of translations per hour for authenticated users." xml:space="preserve">
+    <value>每小时已认证用户的最大翻译次数。</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>项目标志</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>项目名称</value>
+  </data>
+  <data name="Project Slogan" xml:space="preserve">
+    <value>项目标语</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>页脚中显示的品牌名称。</value>
@@ -65,6 +77,12 @@
   </data>
   <data name="The name of the project displayed in the frontend." xml:space="preserve">
     <value>项目在前端显示的名称。</value>
+  </data>
+  <data name="The slogan of the project displayed in the frontend." xml:space="preserve">
+    <value>项目在前端展示的宣传语。</value>
+  </data>
+  <data name="User Translate Limit (per hour)" xml:space="preserve">
+    <value>用户翻译限制（每小时）</value>
   </data>
 
 </root>

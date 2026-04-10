@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Please enter some content to translate." xml:space="preserve">
+    <value>Παρακαλώ εισάγετε κάποιο περιεχόμενο για μετάφραση.</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Διακοπή</value>
+  </data>
+  <data name="Target Language:" xml:space="preserve">
+    <value>Γλώσσα στόχος:</value>
+  </data>
+  <data name="Too many requests, please wait." xml:space="preserve">
+    <value>Πολλές αιτήσεις, παρακαλώ περιμένετε.</value>
+  </data>
+  <data name="Translate" xml:space="preserve">
+    <value>Μετάφραση</value>
+  </data>
+  <data name="Translation failed: " xml:space="preserve">
+    <value>Αποτυχία μετάφρασης:</value>
+  </data>
+  <data name="Translation failed." xml:space="preserve">
+    <value>Η μετάφραση απέτυχε.</value>
+  </data>
+
+</root>

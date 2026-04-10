@@ -45,14 +45,26 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Số giả mạo</value>
   </data>
+  <data name="Guest Translate Limit (per hour)" xml:space="preserve">
+    <value>Giới hạn dịch cho khách (mỗi giờ)</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>Số đăng ký ICP</value>
+  </data>
+  <data name="Maximum number of translations per hour for anonymous (guest) users." xml:space="preserve">
+    <value>Số lượng bản dịch tối đa mỗi giờ cho người dùng ẩn danh (khách).</value>
+  </data>
+  <data name="Maximum number of translations per hour for authenticated users." xml:space="preserve">
+    <value>Số lượng bản dịch tối đa mỗi giờ cho người dùng đã xác thực.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Logo dự án</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Tên dự án</value>
+  </data>
+  <data name="Project Slogan" xml:space="preserve">
+    <value>Khẩu hiệu dự án</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>Tên thương hiệu được hiển thị trong chân trang.</value>
@@ -65,6 +77,12 @@
   </data>
   <data name="The name of the project displayed in the frontend." xml:space="preserve">
     <value>Tên dự án được hiển thị trên giao diện người dùng</value>
+  </data>
+  <data name="The slogan of the project displayed in the frontend." xml:space="preserve">
+    <value>Khẩu hiệu của dự án được hiển thị trên giao diện người dùng.</value>
+  </data>
+  <data name="User Translate Limit (per hour)" xml:space="preserve">
+    <value>Giới hạn dịch của người dùng (mỗi giờ)</value>
   </data>
 
 </root>
