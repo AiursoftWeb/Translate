@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="About" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Acesso Negado</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -135,6 +138,9 @@
   <data name="Roles" xml:space="preserve">
     <value>Funções</value>
   </data>
+  <data name="Self Host" xml:space="preserve">
+    <value>Auto-hospedado</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Configurações</value>
   </data>
@@ -149,6 +155,12 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>Modelo</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Ferramentas</value>
+  </data>
+  <data name="Translate" xml:space="preserve">
+    <value>Traduzir</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>Não Autorizado</value>

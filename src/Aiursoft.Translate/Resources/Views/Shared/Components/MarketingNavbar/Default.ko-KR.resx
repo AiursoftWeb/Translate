@@ -30,8 +30,14 @@
   <data name="GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="GitLab" xml:space="preserve">
+    <value>GitLab</value>
+  </data>
   <data name="Source Code" xml:space="preserve">
     <value>소스 코드</value>
+  </data>
+  <data name="Try it now" xml:space="preserve">
+    <value>지금 바로 사용해 보세요</value>
   </data>
   <data name="Try the dashboard" xml:space="preserve">
     <value>대시보드 사용해보기</value>

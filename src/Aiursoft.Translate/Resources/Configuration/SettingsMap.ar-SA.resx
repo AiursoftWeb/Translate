@@ -45,14 +45,26 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>رقم افتراضي</value>
   </data>
+  <data name="Guest Translate Limit (per hour)" xml:space="preserve">
+    <value>حد ترجمة الضيوف (في الساعة)</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>رقم ICP</value>
+  </data>
+  <data name="Maximum number of translations per hour for anonymous (guest) users." xml:space="preserve">
+    <value>الحد الأقصى لعدد الترجمات في الساعة للمستخدمين غير المصادق عليهم (الضيوف).</value>
+  </data>
+  <data name="Maximum number of translations per hour for authenticated users." xml:space="preserve">
+    <value>الحد الأقصى لعدد الترجمات في الساعة للمستخدمين المصادق عليهم.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>شعار المشروع</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>اسم المشروع</value>
+  </data>
+  <data name="Project Slogan" xml:space="preserve">
+    <value>شعار المشروع</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>اسم العلامة التجارية المُعرض في التذييل.</value>
@@ -65,6 +77,12 @@
   </data>
   <data name="The name of the project displayed in the frontend." xml:space="preserve">
     <value>اسم المشروع المُعرض في الواجهة الأمامية.</value>
+  </data>
+  <data name="The slogan of the project displayed in the frontend." xml:space="preserve">
+    <value>شعار المشروع المعروض في واجهة المستخدم.</value>
+  </data>
+  <data name="User Translate Limit (per hour)" xml:space="preserve">
+    <value>حدود ترجمة المستخدم (في الساعة)</value>
   </data>
 
 </root>

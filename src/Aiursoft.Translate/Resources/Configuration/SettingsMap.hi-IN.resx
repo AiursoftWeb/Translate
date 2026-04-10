@@ -45,14 +45,26 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>डमी नंबर</value>
   </data>
+  <data name="Guest Translate Limit (per hour)" xml:space="preserve">
+    <value>अतिथि अनुवाद सीमा (प्रति घंटा)</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>ICP संख्या</value>
+  </data>
+  <data name="Maximum number of translations per hour for anonymous (guest) users." xml:space="preserve">
+    <value>प्रायोगिक (गैस्ट) उपयोगकर्ताओं के लिए प्रति घंटे अनुवादों की अधिकतम संख्या।</value>
+  </data>
+  <data name="Maximum number of translations per hour for authenticated users." xml:space="preserve">
+    <value>प्रति घंटे प्रमाणित उपयोगकर्ताओं के लिए अनुवादों की अधिकतम संख्या।</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>प्रोजेक्ट लोगो</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>प्रोजेक्ट नाम</value>
+  </data>
+  <data name="Project Slogan" xml:space="preserve">
+    <value>परियोजना नारा</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>फुटर में दिखाई देने वाला ब्रांड नाम</value>
@@ -65,6 +77,12 @@
   </data>
   <data name="The name of the project displayed in the frontend." xml:space="preserve">
     <value>फ्रंटएंड में प्रदर्शित प्रोजेक्ट का नाम।</value>
+  </data>
+  <data name="The slogan of the project displayed in the frontend." xml:space="preserve">
+    <value>प्रोजेक्ट का नारा जो फ्रंटएंड में प्रदर्शित किया जाता है।</value>
+  </data>
+  <data name="User Translate Limit (per hour)" xml:space="preserve">
+    <value>उपयोगकर्ता अनुवाद सीमा (प्रति घंटा)</value>
   </data>
 
 </root>
