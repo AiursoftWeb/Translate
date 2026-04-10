@@ -45,14 +45,26 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Număr dummy</value>
   </data>
+  <data name="Guest Translate Limit (per hour)" xml:space="preserve">
+    <value>Limit de traducere pentru oaspeți (pe oră)</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>Număr ICP</value>
+  </data>
+  <data name="Maximum number of translations per hour for anonymous (guest) users." xml:space="preserve">
+    <value>Numărul maxim de traduceri pe oră pentru utilizatorii anonimi (oaspeți).</value>
+  </data>
+  <data name="Maximum number of translations per hour for authenticated users." xml:space="preserve">
+    <value>Numărul maxim de traduceri pe oră pentru utilizatorii autentificați.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Logo Proiect</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Numele proiectului</value>
+  </data>
+  <data name="Project Slogan" xml:space="preserve">
+    <value>Sloganul proiectului</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>Numele mărcii afișat în subsol.</value>
@@ -65,6 +77,12 @@
   </data>
   <data name="The name of the project displayed in the frontend." xml:space="preserve">
     <value>Numele proiectului afișat în interfața frontend</value>
+  </data>
+  <data name="The slogan of the project displayed in the frontend." xml:space="preserve">
+    <value>Sloganul proiectului afișat în interfața frontend.</value>
+  </data>
+  <data name="User Translate Limit (per hour)" xml:space="preserve">
+    <value>Limit de traduceri pentru utilizatori (pe oră)</value>
   </data>
 
 </root>

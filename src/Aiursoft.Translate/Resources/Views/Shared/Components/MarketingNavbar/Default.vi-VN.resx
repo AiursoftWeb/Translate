@@ -30,8 +30,14 @@
   <data name="GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="GitLab" xml:space="preserve">
+    <value>GitLab</value>
+  </data>
   <data name="Source Code" xml:space="preserve">
     <value>Mã Nguồn</value>
+  </data>
+  <data name="Try it now" xml:space="preserve">
+    <value>Thử ngay</value>
   </data>
   <data name="Try the dashboard" xml:space="preserve">
     <value>Dùng thử bảng điều khiển</value>

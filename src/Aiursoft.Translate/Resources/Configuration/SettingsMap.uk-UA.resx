@@ -45,14 +45,26 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Псевдонім</value>
   </data>
+  <data name="Guest Translate Limit (per hour)" xml:space="preserve">
+    <value>Ліміт перекладів для гостей (за годину)</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>Номер ICP</value>
+  </data>
+  <data name="Maximum number of translations per hour for anonymous (guest) users." xml:space="preserve">
+    <value>Максимальна кількість перекладів за годину для анонімних (гостьових) користувачів.</value>
+  </data>
+  <data name="Maximum number of translations per hour for authenticated users." xml:space="preserve">
+    <value>Максимальна кількість перекладів за годину для автентифікованих користувачів.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Логотип проекту</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Назва проекту</value>
+  </data>
+  <data name="Project Slogan" xml:space="preserve">
+    <value>Слоган проєкту</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>Назва бренду, що відображається в підвалі.</value>
@@ -65,6 +77,12 @@
   </data>
   <data name="The name of the project displayed in the frontend." xml:space="preserve">
     <value>Назва проекту, що відображається на фронтенді.</value>
+  </data>
+  <data name="The slogan of the project displayed in the frontend." xml:space="preserve">
+    <value>Слоган проекту, відображений у інтерфейсі.</value>
+  </data>
+  <data name="User Translate Limit (per hour)" xml:space="preserve">
+    <value>Ліміт перекладів для користувачів (за годину)</value>
   </data>
 
 </root>

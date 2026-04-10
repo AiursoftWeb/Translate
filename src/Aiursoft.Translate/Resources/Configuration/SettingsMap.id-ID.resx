@@ -45,14 +45,26 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Nomor Palsu</value>
   </data>
+  <data name="Guest Translate Limit (per hour)" xml:space="preserve">
+    <value>Batas Terjemahan Tamu (per jam)</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>Nomor ICP</value>
+  </data>
+  <data name="Maximum number of translations per hour for anonymous (guest) users." xml:space="preserve">
+    <value>Jumlah maksimum terjemahan per jam untuk pengguna anonim (tamu).</value>
+  </data>
+  <data name="Maximum number of translations per hour for authenticated users." xml:space="preserve">
+    <value>Jumlah maksimum terjemahan per jam untuk pengguna yang terautentikasi.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Logo Proyek</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Nama Proyek</value>
+  </data>
+  <data name="Project Slogan" xml:space="preserve">
+    <value>Tagline Proyek</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>Nama merek yang ditampilkan di bagian footer.</value>
@@ -65,6 +77,12 @@
   </data>
   <data name="The name of the project displayed in the frontend." xml:space="preserve">
     <value>Nama proyek yang ditampilkan di antarmuka pengguna depan</value>
+  </data>
+  <data name="The slogan of the project displayed in the frontend." xml:space="preserve">
+    <value>Slogan proyek yang ditampilkan di antarmuka pengguna.</value>
+  </data>
+  <data name="User Translate Limit (per hour)" xml:space="preserve">
+    <value>Batas Terjemahan Pengguna (per jam)</value>
   </data>
 
 </root>
