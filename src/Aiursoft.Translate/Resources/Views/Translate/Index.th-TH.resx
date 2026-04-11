@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Please enter some content to translate." xml:space="preserve">
+      <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
+    <value>เสริมพลังการแปลของคุณด้วย AI ท้องถิ่น: ปลอดภัย ยืดหยุ่น และมีความซื่อตรง</value>
+  </data>
+  <data name="Please enter some content to translate." xml:space="preserve">
     <value>กรุณากรอกเนื้อหาเพื่อแปล</value>
   </data>
   <data name="Stop" xml:space="preserve">

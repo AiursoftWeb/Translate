@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Please enter some content to translate." xml:space="preserve">
+      <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
+    <value>Stärken Sie Ihre Übersetzungen mit lokaler KI: Privat, flexibel und treu.</value>
+  </data>
+  <data name="Please enter some content to translate." xml:space="preserve">
     <value>Bitte geben Sie Inhalte ein, die übersetzt werden sollen.</value>
   </data>
   <data name="Stop" xml:space="preserve">

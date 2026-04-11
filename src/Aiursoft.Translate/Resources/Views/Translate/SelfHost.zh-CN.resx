@@ -51,6 +51,9 @@
   <data name="Development &amp; Manual Run" xml:space="preserve">
     <value>开发与手动运行</value>
   </data>
+  <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
+    <value>使用本地 AI 增强您的翻译：私密、灵活且忠实。</value>
+  </data>
   <data name="Execute `dotnet run` to run the app." xml:space="preserve">
     <value>执行 `dotnet run` 以运行应用程序。</value>
   </data>

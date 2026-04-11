@@ -51,6 +51,9 @@
   <data name="Development &amp; Manual Run" xml:space="preserve">
     <value>Kehitys ja manuaalinen suoritus</value>
   </data>
+  <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
+    <value>Vahvista käännöksesi paikallisella tekoälyllä: yksityinen, joustava ja luotettava.</value>
+  </data>
   <data name="Execute `dotnet run` to run the app." xml:space="preserve">
     <value>Suorita `dotnet run` käynnistääksesi sovelluksen.</value>
   </data>
