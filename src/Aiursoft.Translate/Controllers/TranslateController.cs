@@ -1,7 +1,6 @@
 using Aiursoft.Translate.Configuration;
 using Aiursoft.Translate.Models.TranslateViewModels;
 using Aiursoft.Translate.Services;
-using Aiursoft.Dotlang.Shared;
 using Aiursoft.UiStack.Navigation;
 using Aiursoft.WebTools.Attributes;
 using Microsoft.AspNetCore.Mvc;
