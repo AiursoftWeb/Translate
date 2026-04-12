@@ -28,10 +28,15 @@ public abstract class TestBase
         };
     }
 
+    private string? _testPath;
+
     [TestInitialize]
     public virtual async Task CreateServer()
     {
-        Server = await AppAsync<Startup>([], port: Port);
+        _testPath = Path.Combine(Path.GetTempPath(), "AiursoftTranslateTests", Guid.NewGuid().ToString());
+        Server = await AppAsync<Startup>([
+            $"Storage:Path={_testPath}"
+        ], port: Port);
         await Server.UpdateDbAsync<TranslateDbContext>();
         await Server.SeedAsync();
         await Server.StartAsync();
@@ -40,9 +45,16 @@ public abstract class TestBase
     [TestCleanup]
     public virtual async Task CleanServer()
     {
-        if (Server == null) return;
-        await Server.StopAsync();
-        Server.Dispose();
+        if (Server != null)
+        {
+            await Server.StopAsync();
+            Server.Dispose();
+        }
+
+        if (_testPath != null && Directory.Exists(_testPath))
+        {
+            Directory.Delete(_testPath, true);
+        }
     }
 
     protected async Task<string> GetAntiCsrfToken(string url)
