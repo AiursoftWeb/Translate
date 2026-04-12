@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <Version>10.0.2</Version>
+    <Version>10.0.3</Version>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Aiursoft.Translate</AssemblyName>
     <RootNamespace>Aiursoft.Translate</RootNamespace>
