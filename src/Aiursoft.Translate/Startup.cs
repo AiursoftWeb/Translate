@@ -71,6 +71,7 @@ public class Startup : IWebStartup
         services.AddScoped<IOllamaService, OllamaService>();
         services.AddScoped<MarkdownShredder>();
         services.AddScoped<OllamaBasedTranslatorEngine>();
+        services.AddScoped<TranslationCacheService>();
 
         // Background job infrastructure
         services.AddTaskQueueEngine();

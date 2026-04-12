@@ -10,6 +10,7 @@ namespace Aiursoft.Translate.Entities;
 public abstract class TranslateDbContext(DbContextOptions options) : IdentityDbContext<User>(options), ICanMigrate
 {
     public DbSet<GlobalSetting> GlobalSettings => Set<GlobalSetting>();
+    public DbSet<TranslationCache> TranslationCaches => Set<TranslationCache>();
 
     public virtual  Task MigrateAsync(CancellationToken cancellationToken) =>
         Database.MigrateAsync(cancellationToken);
