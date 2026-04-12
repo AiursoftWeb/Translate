@@ -10,7 +10,7 @@ namespace Aiursoft.Translate.Controllers;
 
 [LimitPerMin]
 public class TranslateController(
-    OllamaBasedTranslatorEngine translator, 
+    TranslationCacheService translator, 
     GuestTranslateRateLimiter rateLimiter,
     GlobalSettingsService globalSettingsService) : Controller
 {
@@ -79,7 +79,7 @@ public class TranslateController(
 
         try
         {
-            var translated = await translator.TranslateAsync(request.Content, request.TargetLanguage);
+            var translated = await translator.GetOrTranslateAsync(request.Content, request.TargetLanguage);
             return Json(new TranslateResponse { TranslatedContent = translated });
         }
         catch (Exception ex)
@@ -127,7 +127,7 @@ public class TranslateController(
 
         try
         {
-            await foreach (var part in translator.TranslateStreamAsync(request.Content, request.TargetLanguage, HttpContext.RequestAborted))
+            await foreach (var part in translator.GetOrTranslateStreamAsync(request.Content, request.TargetLanguage, HttpContext.RequestAborted))
             {
                 await Response.WriteAsync(part, HttpContext.RequestAborted);
                 await Response.Body.FlushAsync(HttpContext.RequestAborted);
