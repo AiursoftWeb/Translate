@@ -51,6 +51,9 @@
   <data name="Development &amp; Manual Run" xml:space="preserve">
     <value>Ontwikkeling &amp; Handmatig uitvoeren</value>
   </data>
+  <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
+    <value>Empower your translations with local AI: Private, flexible, and faithful.</value>
+  </data>
   <data name="Execute `dotnet run` to run the app." xml:space="preserve">
     <value>Voer `dotnet run` uit om de app te starten.</value>
   </data>
