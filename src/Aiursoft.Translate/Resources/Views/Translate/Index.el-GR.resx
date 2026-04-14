@@ -18,8 +18,20 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
+      <data name="Both" xml:space="preserve">
+    <value>Και τα δύο</value>
+  </data>
+  <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
     <value>Εμπιστευτείτε τις μεταφράσεις σας σε τοπικό AI: Ιδιωτικό, ευέλικτο και πιστό.</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Πρωτότυπο</value>
+  </data>
+  <data name="Original + Translation" xml:space="preserve">
+    <value>Αρχικό + Μετάφραση</value>
+  </data>
+  <data name="Original only" xml:space="preserve">
+    <value>Μόνο το πρωτότυπο</value>
   </data>
   <data name="Please enter some content to translate." xml:space="preserve">
     <value>Παρακαλώ εισάγετε κάποιο περιεχόμενο για μετάφραση.</value>
@@ -36,11 +48,17 @@
   <data name="Translate" xml:space="preserve">
     <value>Μετάφραση</value>
   </data>
+  <data name="Translation" xml:space="preserve">
+    <value>Μετάφραση</value>
+  </data>
   <data name="Translation failed: " xml:space="preserve">
     <value>Αποτυχία μετάφρασης:</value>
   </data>
   <data name="Translation failed." xml:space="preserve">
     <value>Η μετάφραση απέτυχε.</value>
+  </data>
+  <data name="Translation only" xml:space="preserve">
+    <value>Μόνο μετάφραση</value>
   </data>
 
 </root>
