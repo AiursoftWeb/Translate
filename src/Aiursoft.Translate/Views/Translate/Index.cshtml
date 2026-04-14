@@ -9,12 +9,30 @@
 <div class="d-flex flex-column h-100 pb-0">
     <!-- Unified Sticky Toolbar -->
     <div class="sticky-top bg-white border-bottom py-2 px-3 mb-0 d-flex align-items-center justify-content-between z-3" style="box-shadow: 0 2px 4px rgba(0,0,0,.04);">
-        <!-- Left: Branding -->
+        <!-- Left: Branding & View Switcher -->
         <div class="d-flex align-items-center gap-3">
-             <h4 class="mb-0 fw-bold"><i class="align-middle me-1" data-lucide="languages"></i> @Model.AppName</h4>
-             <span class="text-muted d-none d-lg-inline-block border-start ps-3" style="font-size: 0.85rem; letter-spacing: 0.02rem;">
-                 @Localizer["Empower your translations with local AI: Private, flexible, and faithful."]
-             </span>
+            <h4 class="mb-0 fw-bold"><i class="align-middle me-1" data-lucide="languages"></i> @Model.AppName</h4>
+
+            @* Desktop View Switcher *@
+            <div class="btn-group btn-group-sm d-none d-lg-inline-flex shadow-sm" role="group" aria-label="View mode" id="view-mode-switcher-desktop">
+                <input type="radio" class="btn-check" name="view-mode-desktop" id="view-split-desktop" value="split" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary" for="view-split-desktop" title="@Localizer["Split View"]"><i class="align-middle" data-lucide="columns"></i></label>
+
+                <input type="radio" class="btn-check" name="view-mode-desktop" id="view-editor-desktop" value="editor" autocomplete="off">
+                <label class="btn btn-outline-secondary px-3" for="view-editor-desktop" title="@Localizer["Editor Only"]"><i class="align-middle" data-lucide="code-2"></i> @Localizer["Source"]</label>
+
+                <input type="radio" class="btn-check" name="view-mode-desktop" id="view-preview-desktop" value="preview" autocomplete="off">
+                <label class="btn btn-outline-secondary px-3" for="view-preview-desktop" title="@Localizer["Preview Only"]"><i class="align-middle" data-lucide="eye"></i> @Localizer["Translation"]</label>
+            </div>
+
+            @* Mobile View Switcher *@
+            <div class="btn-group btn-group-sm d-lg-none shadow-sm" role="group" aria-label="Mobile view mode" id="view-mode-switcher-mobile">
+                <input type="radio" class="btn-check" name="view-mode-mobile" id="view-editor-mobile" value="editor" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary" for="view-editor-mobile" title="@Localizer["Source"]"><i class="align-middle" data-lucide="code-2"></i></label>
+
+                <input type="radio" class="btn-check" name="view-mode-mobile" id="view-preview-mobile" value="preview" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="view-preview-mobile" title="@Localizer["Translation"]"><i class="align-middle" data-lucide="eye"></i></label>
+            </div>
         </div>
 
         <!-- Middle: Options -->
@@ -39,10 +57,10 @@
     </div>
 
     <!-- Content Area -->
-    <div class="row flex-grow-1 gx-0" style="height: calc(100vh - 120px); min-height: 400px; background-color: #F9FAFB;">
+    <div class="row flex-grow-1 gx-0" style="height: calc(100vh - 61px); min-height: 400px; background-color: #F9FAFB;">
 
-        @* --- Left Column: Source Editor --- *@
-        <div class="col-lg-6 h-100 border-end" style="border-color: #eaecef !important;">
+        @* --- Left Column: Source Editor (Monaco) --- *@
+        <div id="editor-column" class="col-lg-6 h-100 border-end" style="border-color: #eaecef !important;">
             <div class="h-100 d-flex flex-column bg-white">
                 <div class="flex-grow-1 position-relative editor-wrapper">
                     <div id="source-editor-container" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></div>
@@ -50,12 +68,10 @@
             </div>
         </div>
 
-        @* --- Right Column: Result Editor --- *@
-        <div class="col-lg-6 h-100 border-end" style="border-color: #eaecef !important;">
-             <div class="h-100 d-flex flex-column bg-white">
-                <div class="flex-grow-1 position-relative editor-wrapper">
-                    <div id="result-editor-container" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></div>
-                </div>
+        @* --- Right Column: Translation Preview (Markdown Rendered) --- *@
+        <div id="preview-column" class="col-lg-6 h-100 overflow-auto" style="background-color: #F9FAFB;">
+            <div id="translation-preview" class="bg-white shadow-sm mx-auto p-4 p-md-5 my-4 markdown-content" style="max-width: 21cm; min-height: calc(100% - 32px);">
+                <p class="text-muted text-center mt-5">@Localizer["Your translation will appear here..."]</p>
             </div>
         </div>
     </div>
@@ -72,14 +88,27 @@
 @* ReSharper disable once Razor.SectionNotResolved *@
 @section styles {
     <link rel="stylesheet" href="~/node_modules/@@fontsource/cascadia-code/index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/styles/markdown-preview.css" asp-append-version="true" />
+    @if (isDarkMode)
+    {
+        <link rel="stylesheet" href="~/node_modules/@@highlightjs/cdn-assets/styles/github-dark.min.css" asp-append-version="true" />
+    }
+    else
+    {
+        <link rel="stylesheet" href="~/node_modules/@@highlightjs/cdn-assets/styles/github.min.css" asp-append-version="true" />
+    }
     <style>
         main.content {
             padding: 0 !important;
         }
+
         /* Toolbar adjustments for dark mode */
         body[data-bs-theme="dark"] .sticky-top {
-            background-color: #222e3c !important; /* AdminKit dark background */
+            background-color: #222e3c !important;
             border-bottom: 1px solid #323d4b !important;
+        }
+        body[data-bs-theme="dark"] #preview-column {
+            background-color: #1e2530 !important;
         }
         body[data-bs-theme="dark"] .bg-white {
             background-color: #222e3c !important;
@@ -87,181 +116,348 @@
         body[data-bs-theme="dark"] .border-end {
             border-color: #323d4b !important;
         }
+        body[data-bs-theme="dark"] .btn-white {
+            background-color: #2f3e50 !important;
+            border-color: #3f5268 !important;
+            color: #d1d8e0 !important;
+        }
+        body[data-bs-theme="dark"] .btn-white:hover {
+            background-color: #3f5268 !important;
+            color: #fff !important;
+        }
+
+        /* Preview area dark mode */
+        body[data-bs-theme="dark"] #translation-preview {
+            background-color: #222e3c !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+            color: #e9ecef;
+        }
 
         .editor-wrapper {
             background-color: #fff;
         }
-
         body[data-bs-theme="dark"] .editor-wrapper {
             background-color: #1e2530 !important;
         }
-
         .sticky-top {
             top: 0;
             position: sticky;
         }
 
-        /* CodeMirror 6: fill the absolute-positioned container divs */
-        #source-editor-container .cm-editor,
-        #result-editor-container .cm-editor {
-            height: 100%;
-            font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
-            font-size: 14px;
-        }
-        #source-editor-container .cm-scroller,
-        #result-editor-container .cm-scroller {
-            overflow: auto;
-            height: 100%;
+        @@media (max-width: 991.98px) {
+            #editor-column,
+            #preview-column {
+                width: 100%;
+                display: none;
+            }
+            .view-mode-editor #editor-column,
+            .view-mode-preview #preview-column {
+                display: block;
+            }
         }
     </style>
 }
 
 @* ReSharper disable once Razor.SectionNotResolved *@
 @section scripts {
-    <script src="~/codemirror-bundle.js" asp-append-version="true"></script>
+    <script>var require = { paths: { 'vs': '/node_modules/monaco-editor/min/vs' } };</script>
+    <script src="~/node_modules/monaco-editor/min/vs/loader.js" asp-append-version="true"></script>
+    <script src="~/node_modules/marked/marked.min.js" asp-append-version="true"></script>
+    <script src="~/node_modules/@@highlightjs/cdn-assets/highlight.min.js" asp-append-version="true"></script>
     <script>
-        (function () {
-            const { basicSetup, EditorView, EditorState, markdown, oneDark } = window.CM;
+        document.addEventListener("DOMContentLoaded", function () {
+            require(['vs/editor/editor.main'], function () {
+                const isDarkMode = @(isDarkMode ? "true" : "false");
+                let monacoEditorInstance;
 
-            function getLocalizedText(key, defaultText) {
-                const el = document.querySelector(`#loc-data span[data-key="${key}"]`);
-                return el ? el.innerText : defaultText;
-            }
-
-            function setEditorValue(editor, text) {
-                editor.dispatch({
-                    changes: { from: 0, to: editor.state.doc.length, insert: text }
+                // ========== Monaco Editor Setup (Left Panel - Source Input) ==========
+                monacoEditorInstance = monaco.editor.create(document.getElementById('source-editor-container'), {
+                    value: '# Hello World\n\nPaste your markdown here to translate!',
+                    language: 'markdown',
+                    theme: isDarkMode ? 'vs-dark' : 'vs',
+                    automaticLayout: true,
+                    wordWrap: 'on',
+                    'semanticHighlighting.enabled': true,
+                    fontFamily: "'Cascadia Code', 'Consolas', 'Courier New', monospace",
+                    fontSize: 14,
+                    fontLigatures: true,
+                    minimap: { enabled: false },
+                    scrollBeyondLastLine: false,
+                    renderLineHighlight: 'line',
+                    lineNumbers: 'on'
                 });
-            }
 
-            function scrollEditorToBottom(editor) {
-                editor.dispatch({
-                    effects: EditorView.scrollIntoView(editor.state.doc.length)
-                });
-            }
-
-            function updateTargetLanguage(content) {
-                const trimmed = (content || '').trim();
-                if (!trimmed) return;
-                const isEnglish = /^[#\s*]*[A-Za-z]/.test(trimmed);
-                const targetSelect = document.getElementById('targetLanguage');
-                const desired = isEnglish ? 'zh-CN' : 'en-US';
-                if (targetSelect.value !== desired) targetSelect.value = desired;
-            }
-
-            const isDarkMode = @(isDarkMode ? "true" : "false");
-            const commonExtensions = [
-                basicSetup,
-                markdown(),
-                EditorView.lineWrapping,
-                ...(isDarkMode ? [oneDark] : [])
-            ];
-
-            let languageAutoDetected = false;
-            let detectTimeout;
-
-            const sourceEditor = new EditorView({
-                doc: '# Hello World\n\nPaste your markdown here to translate!',
-                extensions: [
-                    ...commonExtensions,
-                    EditorView.updateListener.of(update => {
-                        if (!update.docChanged || languageAutoDetected) return;
-                        clearTimeout(detectTimeout);
-                        detectTimeout = setTimeout(() => {
-                            updateTargetLanguage(sourceEditor.state.doc.toString());
-                            languageAutoDetected = true;
-                        }, 1000);
-                    })
-                ],
-                parent: document.getElementById('source-editor-container')
-            });
-
-            const resultEditor = new EditorView({
-                extensions: [
-                    ...commonExtensions,
-                    EditorState.readOnly.of(true)
-                ],
-                parent: document.getElementById('result-editor-container')
-            });
-
-            let abortController = null;
-            const btn = document.getElementById('translateBtn');
-
-            btn.addEventListener('click', function () {
-                if (abortController) {
-                    abortController.abort();
-                    return;
+                // ---------- Monaco Shortcuts ----------
+                function wrapSelection(startStr, endStr) {
+                    const selection = monacoEditorInstance.getSelection();
+                    const model = monacoEditorInstance.getModel();
+                    const text = model.getValueInRange(selection);
+                    monacoEditorInstance.executeEdits('markdown-shortcut', [{
+                        range: selection,
+                        text: `${startStr}${text}${endStr}`,
+                        forceMoveMarkers: true
+                    }]);
                 }
 
-                const content = sourceEditor.state.doc.toString();
-                const targetLanguage = document.getElementById('targetLanguage').value;
+                monacoEditorInstance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyB, () => wrapSelection('**', '**'));
+                monacoEditorInstance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyI, () => wrapSelection('*', '*'));
+                monacoEditorInstance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyK, () => {
+                    const sel = monacoEditorInstance.getSelection();
+                    if (sel.startLineNumber !== sel.endLineNumber) {
+                        wrapSelection('```\n', '\n```');
+                    } else {
+                        wrapSelection('`', '`');
+                    }
+                });
+                monacoEditorInstance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyL, () => wrapSelection('[', '](url)'));
 
-                if (!content) {
-                    alert(getLocalizedText('enter-content', 'Please enter some content to translate.'));
-                    return;
-                }
+                // ---------- List Continuation on Enter ----------
+                monacoEditorInstance.onKeyDown((e) => {
+                    if (e.keyCode === monaco.KeyCode.Enter && !e.ctrlKey && !e.altKey && !e.metaKey && !e.shiftKey) {
+                        const pos = monacoEditorInstance.getPosition();
+                        const model = monacoEditorInstance.getModel();
+                        const lineContent = model.getLineContent(pos.lineNumber);
+                        const unorderedMatch = lineContent.match(/^(\s*)([\-\*\+])\s(.*)$/);
+                        const orderedMatch = lineContent.match(/^(\s*)(\d+)(\.)\s(.*)$/);
 
-                document.getElementById('btnTextNormal').classList.add('d-none');
-                document.getElementById('btnTextStop').classList.remove('d-none');
-                document.getElementById('btnLoading').classList.remove('d-none');
-                btn.classList.remove('btn-primary');
-                btn.classList.add('btn-danger');
-
-                setEditorValue(resultEditor, '');
-                let translatedFullContent = '';
-                abortController = new AbortController();
-
-                fetch('@Url.Action("TranslateStream", "Translate")', {
-                    method: 'POST',
-                    signal: abortController.signal,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-                    },
-                    body: JSON.stringify({ content, targetLanguage })
-                }).then(async response => {
-                    if (response.status === 401) {
-                        const data = await response.json().catch(() => ({}));
-                        if (data.requireLogin) {
-                            window.open('@Url.Action("Login", "Account")', '_blank');
-                            return;
+                        if (unorderedMatch) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (!unorderedMatch[3].trim()) {
+                                monacoEditorInstance.executeEdits('list', [{ range: new monaco.Range(pos.lineNumber, 1, pos.lineNumber, lineContent.length + 1), text: '', forceMoveMarkers: true }]);
+                            } else {
+                                const insertText = `\n${unorderedMatch[1]}${unorderedMatch[2]} `;
+                                monacoEditorInstance.executeEdits('list', [{ range: new monaco.Range(pos.lineNumber, pos.column, pos.lineNumber, pos.column), text: insertText, forceMoveMarkers: true }]);
+                                monacoEditorInstance.setPosition({ lineNumber: pos.lineNumber + 1, column: insertText.length });
+                                monacoEditorInstance.revealPositionInCenterIfOutsideViewport(monacoEditorInstance.getPosition());
+                            }
+                        } else if (orderedMatch) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (!orderedMatch[4].trim()) {
+                                monacoEditorInstance.executeEdits('list', [{ range: new monaco.Range(pos.lineNumber, 1, pos.lineNumber, lineContent.length + 1), text: '', forceMoveMarkers: true }]);
+                            } else {
+                                const edits = [];
+                                const nextNum = parseInt(orderedMatch[2]) + 1;
+                                const insertText = `\n${orderedMatch[1]}${nextNum}${orderedMatch[3]} `;
+                                edits.push({ range: new monaco.Range(pos.lineNumber, pos.column, pos.lineNumber, pos.column), text: insertText, forceMoveMarkers: true });
+                                for (let i = pos.lineNumber + 1; i <= model.getLineCount(); i++) {
+                                    const nextLine = model.getLineContent(i);
+                                    const nextMatch = nextLine.match(/^(\s*)(\d+)(\.)\s(.*)$/);
+                                    if (nextMatch && nextMatch[1] === orderedMatch[1]) {
+                                        edits.push({ range: new monaco.Range(i, 1, i, nextLine.length + 1), text: `${orderedMatch[1]}${parseInt(nextMatch[2])+1}${orderedMatch[3]} ${nextMatch[4]}` });
+                                    } else break;
+                                }
+                                monacoEditorInstance.executeEdits('list-renumber', edits);
+                                monacoEditorInstance.setPosition({ lineNumber: pos.lineNumber + 1, column: insertText.length });
+                                monacoEditorInstance.revealPositionInCenterIfOutsideViewport(monacoEditorInstance.getPosition());
+                            }
                         }
                     }
-                    if (response.status === 429) {
-                        alert(getLocalizedText('too-many-requests', '使用过于频繁，请稍等。'));
-                        return;
-                    }
-                    if (!response.ok) {
-                        const errorText = await response.text();
-                        alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + errorText);
-                        setEditorValue(resultEditor, getLocalizedText('translation-failed', 'Translation failed.'));
-                        return;
-                    }
+                });
 
-                    const reader = response.body.getReader();
-                    const decoder = new TextDecoder();
-                    while (true) {
-                        const { done, value } = await reader.read();
-                        if (done) break;
-                        translatedFullContent += decoder.decode(value, { stream: true });
-                        setEditorValue(resultEditor, translatedFullContent);
-                        scrollEditorToBottom(resultEditor);
+                // ---------- Table Snippet Completion ----------
+                monaco.languages.registerCompletionItemProvider('markdown', {
+                    provideCompletionItems: function(model, position) {
+                        const word = model.getWordUntilPosition(position);
+                        return {
+                            suggestions: [{
+                                label: 'table',
+                                kind: monaco.languages.CompletionItemKind.Snippet,
+                                insertText: '| ${1:Header1} | ${2:Header2} |\n|---|---|\n| ${3:Content1} | ${4:Content2} |\n',
+                                insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                                documentation: 'Table',
+                                range: { startLineNumber: position.lineNumber, endLineNumber: position.lineNumber, startColumn: word.startColumn, endColumn: word.endColumn }
+                            }]
+                        };
                     }
-                }).catch(error => {
-                    if (error.name !== 'AbortError') {
-                        alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + error);
-                        setEditorValue(resultEditor, getLocalizedText('translation-failed', 'Translation failed.'));
+                });
+
+                // ========== View Mode Switcher ==========
+                const editorCol = document.getElementById('editor-column');
+                const previewCol = document.getElementById('preview-column');
+                const rootDiv = document.querySelector('.d-flex.flex-column.h-100');
+                const radiosDesktop = document.querySelectorAll('input[name="view-mode-desktop"]');
+                const radiosMobile = document.querySelectorAll('input[name="view-mode-mobile"]');
+
+                function isMobile() { return window.innerWidth < 992; }
+
+                function setViewMode(mode) {
+                    if (!editorCol || !previewCol || !rootDiv) return;
+                    if (isMobile() && mode === 'split') mode = 'editor';
+                    localStorage.setItem('translate-view-mode', mode);
+
+                    const desktopRadio = document.querySelector(`input[name="view-mode-desktop"][value="${mode}"]`);
+                    if (desktopRadio) desktopRadio.checked = true;
+                    const mobileRadio = document.querySelector(`input[name="view-mode-mobile"][value="${mode}"]`);
+                    if (mobileRadio) mobileRadio.checked = true;
+
+                    if (!isMobile()) {
+                        rootDiv.classList.remove('view-mode-editor', 'view-mode-preview');
+                        if (mode === 'split') {
+                            editorCol.classList.remove('d-none', 'col-lg-12'); editorCol.classList.add('col-lg-6');
+                            previewCol.classList.remove('d-none', 'col-lg-12'); previewCol.classList.add('col-lg-6');
+                        } else if (mode === 'editor') {
+                            editorCol.classList.remove('d-none', 'col-lg-6'); editorCol.classList.add('col-lg-12');
+                            previewCol.classList.add('d-none');
+                        } else if (mode === 'preview') {
+                            editorCol.classList.add('d-none');
+                            previewCol.classList.remove('d-none', 'col-lg-6'); previewCol.classList.add('col-lg-12');
+                        }
+                    } else {
+                        editorCol.classList.remove('col-lg-6', 'col-lg-12', 'd-none');
+                        previewCol.classList.remove('col-lg-6', 'col-lg-12', 'd-none');
+                        rootDiv.classList.remove('view-mode-editor', 'view-mode-preview');
+                        rootDiv.classList.add(`view-mode-${mode}`);
                     }
-                }).finally(() => {
-                    abortController = null;
-                    document.getElementById('btnTextNormal').classList.remove('d-none');
-                    document.getElementById('btnTextStop').classList.add('d-none');
-                    document.getElementById('btnLoading').classList.add('d-none');
-                    btn.classList.remove('btn-danger');
-                    btn.classList.add('btn-primary');
+                    if (mode === 'split' || mode === 'preview') renderHighlight();
+                }
+
+                function applyInitialViewMode() {
+                    setViewMode(localStorage.getItem('translate-view-mode') || 'split');
+                }
+                radiosDesktop.forEach(r => r.addEventListener('change', (e) => setViewMode(e.target.value)));
+                radiosMobile.forEach(r => r.addEventListener('change', (e) => setViewMode(e.target.value)));
+                window.addEventListener('resize', applyInitialViewMode);
+                applyInitialViewMode();
+
+                // ========== Helper Functions ==========
+                function getLocalizedText(key, defaultText) {
+                    const el = document.querySelector(`#loc-data span[data-key="${key}"]`);
+                    return el ? el.innerText : defaultText;
+                }
+
+                // Configure marked for safe markdown rendering
+                if (window.marked) {
+                    marked.setOptions({
+                        breaks: true,
+                        gfm: true,
+                        highlight: function(code, lang) {
+                            if (lang && window.hljs && hljs.getLanguage(lang)) {
+                                try { return hljs.highlight(code, { language: lang }).value; } catch(e) {}
+                            }
+                            return code;
+                        }
+                    });
+                }
+
+                function renderMarkdownToPreview(markdownText) {
+                    const previewEl = document.getElementById('translation-preview');
+                    if (!previewEl) return;
+                    if (!markdownText || !markdownText.trim()) {
+                        previewEl.innerHTML = '<p class="text-muted text-center mt-5">' + getLocalizedText('enter-content', 'Please enter some content to translate.') + '</p>';
+                        return;
+                    }
+                    if (window.marked) {
+                        previewEl.innerHTML = marked.parse(markdownText);
+                    } else {
+                        previewEl.innerHTML = '<pre>' + escapeHtml(markdownText) + '</pre>';
+                    }
+                    renderHighlight();
+                }
+
+                function renderHighlight() {
+                    if (window.hljs) {
+                        document.getElementById('translation-preview').querySelectorAll('pre code').forEach((block) => {
+                            hljs.highlightElement(block);
+                        });
+                    }
+                }
+
+                function escapeHtml(text) {
+                    const div = document.createElement('div');
+                    div.textContent = text;
+                    return div.innerHTML;
+                }
+
+                function updateTargetLanguage(content) {
+                    const trimmed = (content || '').trim();
+                    if (!trimmed) return;
+                    const isEnglish = /^[#\s*]*[A-Za-z]/.test(trimmed);
+                    const targetSelect = document.getElementById('targetLanguage');
+                    const desired = isEnglish ? 'zh-CN' : 'en-US';
+                    if (targetSelect.value !== desired) targetSelect.value = desired;
+                }
+
+                // Auto-detect language from input
+                let languageAutoDetected = false;
+                let detectTimeout;
+                monacoEditorInstance.onDidChangeModelContent(() => {
+                    if (languageAutoDetected) return;
+                    clearTimeout(detectTimeout);
+                    detectTimeout = setTimeout(() => {
+                        updateTargetLanguage(monacoEditorInstance.getValue());
+                        languageAutoDetected = true;
+                    }, 1000);
+                });
+
+                // ========== Translate Logic ==========
+                let abortController = null;
+                const btn = document.getElementById('translateBtn');
+
+                btn.addEventListener('click', function () {
+                    if (abortController) { abortController.abort(); return; }
+
+                    const content = monacoEditorInstance.getValue();
+                    const targetLanguage = document.getElementById('targetLanguage').value;
+
+                    if (!content.trim()) { alert(getLocalizedText('enter-content', 'Please enter some content.')); return; }
+
+                    document.getElementById('btnTextNormal').classList.add('d-none');
+                    document.getElementById('btnTextStop').classList.remove('d-none');
+                    document.getElementById('btnLoading').classList.remove('d-none');
+                    btn.classList.remove('btn-primary'); btn.classList.add('btn-danger');
+
+                    renderMarkdownToPreview('');
+                    let translatedFullContent = '';
+                    abortController = new AbortController();
+
+                    fetch('@Url.Action("TranslateStream", "Translate")', {
+                        method: 'POST',
+                        signal: abortController.signal,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                        },
+                        body: JSON.stringify({ content, targetLanguage })
+                    }).then(async response => {
+                        if (response.status === 401) {
+                            const data = await response.json().catch(() => ({}));
+                            if (data.requireLogin) { window.open('@Url.Action("Login", "Account")', '_blank'); return; }
+                        }
+                        if (response.status === 429) { alert(getLocalizedText('too-many-requests', 'Too many requests, please wait.')); return; }
+                        if (!response.ok) {
+                            const errorText = await response.text();
+                            alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + errorText);
+                            renderMarkdownToPreview(getLocalizedText('translation-failed', 'Translation failed.'));
+                            return;
+                        }
+                        const reader = response.body.getReader();
+                        const decoder = new TextDecoder();
+                        while (true) {
+                            const { done, value } = await reader.read();
+                            if (done) break;
+                            translatedFullContent += decoder.decode(value, { stream: true });
+                            renderMarkdownToPreview(translatedFullContent);
+                            // Auto-scroll preview
+                            const previewEl = document.getElementById('translation-preview');
+                            previewEl.scrollTop = previewEl.scrollHeight;
+                        }
+                    }).catch(error => {
+                        if (error.name !== 'AbortError') {
+                            alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + error);
+                            renderMarkdownToPreview(getLocalizedText('translation-failed', 'Translation failed.'));
+                        }
+                    }).finally(() => {
+                        abortController = null;
+                        document.getElementById('btnTextNormal').classList.remove('d-none');
+                        document.getElementById('btnTextStop').classList.add('d-none');
+                        document.getElementById('btnLoading').classList.add('d-none');
+                        btn.classList.remove('btn-danger'); btn.classList.add('btn-primary');
+                    });
                 });
             });
-        })();
+        });
     </script>
 }
 
