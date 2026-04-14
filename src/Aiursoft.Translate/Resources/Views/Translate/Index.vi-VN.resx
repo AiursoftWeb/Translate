@@ -18,8 +18,20 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
+      <data name="Both" xml:space="preserve">
+    <value>Cả hai</value>
+  </data>
+  <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
     <value>Nâng cấp bản dịch của bạn với AI địa phương: Riêng tư, linh hoạt và trung thành.</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Gốc</value>
+  </data>
+  <data name="Original + Translation" xml:space="preserve">
+    <value>Gốc + Dịch</value>
+  </data>
+  <data name="Original only" xml:space="preserve">
+    <value>Chỉ bản gốc</value>
   </data>
   <data name="Please enter some content to translate." xml:space="preserve">
     <value>Vui lòng nhập nội dung để dịch.</value>
@@ -36,11 +48,17 @@
   <data name="Translate" xml:space="preserve">
     <value>Dịch</value>
   </data>
+  <data name="Translation" xml:space="preserve">
+    <value>Bản dịch</value>
+  </data>
   <data name="Translation failed: " xml:space="preserve">
     <value>Chuyển đổi thất bại:</value>
   </data>
   <data name="Translation failed." xml:space="preserve">
     <value>Dịch thất bại.</value>
+  </data>
+  <data name="Translation only" xml:space="preserve">
+    <value>Chỉ bản dịch</value>
   </data>
 
 </root>

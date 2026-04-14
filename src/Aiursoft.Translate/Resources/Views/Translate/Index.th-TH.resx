@@ -18,8 +18,20 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
+      <data name="Both" xml:space="preserve">
+    <value>ทั้งสอง</value>
+  </data>
+  <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
     <value>เสริมพลังการแปลของคุณด้วย AI ท้องถิ่น: ปลอดภัย ยืดหยุ่น และมีความซื่อตรง</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>ต้นฉบับ</value>
+  </data>
+  <data name="Original + Translation" xml:space="preserve">
+    <value>ต้นฉบับ + คำแปล</value>
+  </data>
+  <data name="Original only" xml:space="preserve">
+    <value>เฉพาะต้นฉบับ</value>
   </data>
   <data name="Please enter some content to translate." xml:space="preserve">
     <value>กรุณากรอกเนื้อหาเพื่อแปล</value>
@@ -36,11 +48,17 @@
   <data name="Translate" xml:space="preserve">
     <value>แปล</value>
   </data>
+  <data name="Translation" xml:space="preserve">
+    <value>คำแปล</value>
+  </data>
   <data name="Translation failed: " xml:space="preserve">
     <value>การแปลล้มเหลว:</value>
   </data>
   <data name="Translation failed." xml:space="preserve">
     <value>การแปลล้มเหลว</value>
+  </data>
+  <data name="Translation only" xml:space="preserve">
+    <value>เฉพาะการแปล</value>
   </data>
 
 </root>

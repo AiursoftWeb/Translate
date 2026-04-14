@@ -18,8 +18,20 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
+      <data name="Both" xml:space="preserve">
+    <value>Обидва</value>
+  </data>
+  <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
     <value>Надайте своїм перекладам можливості завдяки локальному ШІ: Приватно, гнучко та надійно.</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Оригінал</value>
+  </data>
+  <data name="Original + Translation" xml:space="preserve">
+    <value>Оригінал + Переклад</value>
+  </data>
+  <data name="Original only" xml:space="preserve">
+    <value>Тільки оригінал</value>
   </data>
   <data name="Please enter some content to translate." xml:space="preserve">
     <value>Будь ласка, введіть вміст для перекладу.</value>
@@ -36,11 +48,17 @@
   <data name="Translate" xml:space="preserve">
     <value>Перекласти</value>
   </data>
+  <data name="Translation" xml:space="preserve">
+    <value>Переклад</value>
+  </data>
   <data name="Translation failed: " xml:space="preserve">
     <value>Помилка перекладу:</value>
   </data>
   <data name="Translation failed." xml:space="preserve">
     <value>Переклад не вдалося.</value>
+  </data>
+  <data name="Translation only" xml:space="preserve">
+    <value>Тільки переклад</value>
   </data>
 
 </root>
