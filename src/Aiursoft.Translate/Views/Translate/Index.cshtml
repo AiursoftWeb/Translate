@@ -8,7 +8,7 @@
 
 <div class="d-flex flex-column h-100 pb-0">
     <!-- Unified Sticky Toolbar -->
-    <div class="sticky-top bg-white border-bottom py-2 px-3 mb-0 d-flex align-items-center justify-content-between z-3" style="box-shadow: 0 2px 4px rgba(0,0,0,.04);">
+    <div class="sticky-top bg-white border-bottom py-2 px-3 mb-0 d-flex align-items-center justify-content-between flex-wrap gap-2 z-3" style="box-shadow: 0 2px 4px rgba(0,0,0,.04);">
         <!-- Left: Branding -->
         <div class="d-flex align-items-center gap-3">
              <h4 class="mb-0 fw-bold"><i class="align-middle me-1" data-lucide="languages"></i> @Model.AppName</h4>
@@ -18,7 +18,7 @@
         </div>
 
         <!-- Middle: Options -->
-        <div class="flex-grow-1 px-4 text-center d-flex align-items-center justify-content-center gap-2">
+        <div class="flex-grow-1 px-4 text-center d-flex align-items-center justify-content-center gap-2 flex-nowrap">
             <label class="form-label mb-0 d-none d-md-inline">@Localizer["Target Language:"]</label>
             <select id="targetLanguage" class="form-select form-select-sm shadow-sm" style="max-width: 250px;">
                 @foreach (var culture in LocalizationPlugin.SupportedCultures)
@@ -29,8 +29,23 @@
         </div>
 
         <!-- Right: Actions -->
-        <div class="d-flex align-items-center gap-2">
-            <button type="button" id="translateBtn" class="btn btn-sm btn-primary shadow-sm px-3 fw-bold">
+        <div class="d-flex align-items-center gap-2 flex-shrink-0">
+            <!-- View Mode Toggle: Desktop shows 3 options, Mobile shows 2 -->
+            <div class="btn-group btn-group-sm shadow-none view-toggle" role="group" aria-label="View mode" style="min-width: max-content;">
+                <button type="button" id="viewBothBtn" class="btn btn-outline-secondary view-btn d-none d-lg-inline-flex active" data-view="both" title="@Localizer["Original + Translation"]">
+                    <i class="align-middle" data-lucide="columns-2"></i>
+                    <span class="d-none d-xl-inline ms-1">@Localizer["Both"]</span>
+                </button>
+                <button type="button" id="viewSourceBtn" class="btn btn-outline-secondary view-btn active d-lg-none" data-view="source" title="@Localizer["Original only"]">
+                    <i class="align-middle" data-lucide="file-text"></i>
+                    <span class="d-none d-xl-inline ms-1">@Localizer["Original"]</span>
+                </button>
+                <button type="button" id="viewResultBtn" class="btn btn-outline-secondary view-btn" data-view="result" title="@Localizer["Translation only"]">
+                    <i class="align-middle" data-lucide="languages"></i>
+                    <span class="d-none d-xl-inline ms-1">@Localizer["Translation"]</span>
+                </button>
+            </div>
+            <button type="button" id="translateBtn" class="btn btn-sm btn-primary shadow-sm px-3 fw-bold flex-shrink-0">
                 <span id="btnTextNormal"><i class="align-middle me-1" data-lucide="zap"></i> @Localizer["Translate"]</span>
                 <span id="btnTextStop" class="d-none"><i class="align-middle me-1" data-lucide="square"></i> @Localizer["Stop"]</span>
                 <span id="btnLoading" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
@@ -39,10 +54,10 @@
     </div>
 
     <!-- Content Area -->
-    <div class="row flex-grow-1 gx-0" style="height: calc(100vh - 120px); min-height: 400px; background-color: #F9FAFB;">
+    <div class="row flex-grow-1 gx-0 content-area" style="height: calc(100vh - 120px); min-height: 400px; background-color: #F9FAFB;">
 
         @* --- Left Column: Source Editor --- *@
-        <div class="col-lg-6 h-100 border-end" style="border-color: #eaecef !important;">
+        <div id="sourceColumn" class="col-lg-6 h-100 border-end column-source" style="border-color: #eaecef !important;">
             <div class="h-100 d-flex flex-column bg-white">
                 <div class="flex-grow-1 position-relative editor-wrapper">
                     <div id="source-editor-container" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></div>
@@ -51,7 +66,7 @@
         </div>
 
         @* --- Right Column: Result Editor --- *@
-        <div class="col-lg-6 h-100 border-end" style="border-color: #eaecef !important;">
+        <div id="resultColumn" class="col-lg-6 h-100 border-end column-result" style="border-color: #eaecef !important;">
              <div class="h-100 d-flex flex-column bg-white">
                 <div class="flex-grow-1 position-relative editor-wrapper">
                     <div id="result-editor-container" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></div>
@@ -113,6 +128,91 @@
             overflow: auto;
             height: 100%;
         }
+
+        /* View Mode Styles */
+        .view-toggle {
+            /* Fixed width to prevent layout jump: fits 3 icon-only or 2 icon+text buttons */
+        }
+
+        @media (min-width: 992px) {
+            .view-toggle {
+                width: auto; /* Let it size naturally for 3 buttons */
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            .view-toggle {
+                width: max-content; /* Size naturally for 2 mobile buttons, no shrink */
+            }
+        }
+
+        .view-btn.active {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            color: white;
+        }
+
+        .column-source,
+        .column-result {
+            transition: all 0.3s ease;
+        }
+
+        /* Both view (default) - show both columns side by side */
+        .content-area[data-view="both"] #sourceColumn,
+        .content-area[data-view="both"] #resultColumn {
+            display: block !important;
+            width: 50% !important;
+            flex: 0 0 auto;
+        }
+
+        /* Source only view - full width source column */
+        .content-area[data-view="source"] #sourceColumn {
+            display: block !important;
+            width: 100% !important;
+            flex: 0 0 auto;
+        }
+        .content-area[data-view="source"] #resultColumn {
+            display: none !important;
+        }
+
+        /* Result only view - full width result column */
+        .content-area[data-view="result"] #sourceColumn {
+            display: none !important;
+        }
+        .content-area[data-view="result"] #resultColumn {
+            display: block !important;
+            width: 100% !important;
+            flex: 0 0 auto;
+        }
+
+        /* Mobile: default to source-only view on small screens */
+        @@media (max-width: 991.98px) {
+            .content-area:not([data-view]) #sourceColumn,
+            .content-area[data-view="both"] #sourceColumn,
+            .content-area[data-view="source"] #sourceColumn {
+                display: block !important;
+                width: 100% !important;
+                flex: 0 0 auto;
+            }
+            .content-area:not([data-view]) #resultColumn,
+            .content-area[data-view="both"] #resultColumn,
+            .content-area[data-view="source"] #resultColumn {
+                display: none !important;
+            }
+            .content-area[data-view="result"] #sourceColumn {
+                display: none !important;
+            }
+            .content-area[data-view="result"] #resultColumn {
+                display: block !important;
+                width: 100% !important;
+                flex: 0 0 auto;
+            }
+        }
+
+        body[data-bs-theme="dark"] .view-btn.active {
+            background-color: var(--bs-primary);
+            color: white;
+        }
     </style>
 }
 
@@ -148,6 +248,61 @@
                 const desired = isEnglish ? 'zh-CN' : 'en-US';
                 if (targetSelect.value !== desired) targetSelect.value = desired;
             }
+
+            // --- View Mode Management ---
+            const contentArea = document.querySelector('.content-area');
+            const viewBtns = document.querySelectorAll('.view-btn');
+            let currentView = 'both';
+            const isMobile = () => window.matchMedia('(max-width: 991.98px)').matches;
+
+            function setViewMode(view) {
+                // On mobile, 'both' behaves like 'source'
+                if (isMobile() && view === 'both') {
+                    view = 'source';
+                }
+                currentView = view;
+                contentArea.setAttribute('data-view', view);
+                viewBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-view') === view);
+                });
+
+                // Refresh CodeMirror editors to ensure proper rendering after visibility change
+                requestAnimationFrame(() => {
+                    sourceEditor.requestMeasure();
+                    resultEditor.requestMeasure();
+                });
+            }
+
+            viewBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    setViewMode(this.getAttribute('data-view'));
+                });
+            });
+
+            // Initialize: reset all buttons first, then activate the correct one
+            viewBtns.forEach(b => b.classList.remove('active'));
+            if (isMobile()) {
+                setViewMode('source');
+                document.querySelector('.view-btn[data-view="source"].d-lg-none')?.classList.add('active');
+            } else {
+                setViewMode('both');
+                document.querySelector('.view-btn[data-view="both"]')?.classList.add('active');
+            }
+
+            // Handle resize: switch between mobile/desktop modes
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    // If currently on 'both' and switched to mobile, go to 'source'
+                    if (isMobile() && currentView === 'both') {
+                        setViewMode('source');
+                    }
+                    // Refresh editors
+                    sourceEditor.requestMeasure();
+                    resultEditor.requestMeasure();
+                }, 150);
+            });
 
             const isDarkMode = @(isDarkMode ? "true" : "false");
             const commonExtensions = [
@@ -199,6 +354,11 @@
                 if (!content) {
                     alert(getLocalizedText('enter-content', 'Please enter some content to translate.'));
                     return;
+                }
+
+                // On mobile: auto-switch to result view when translating
+                if (isMobile()) {
+                    setViewMode('result');
                 }
 
                 document.getElementById('btnTextNormal').classList.add('d-none');
