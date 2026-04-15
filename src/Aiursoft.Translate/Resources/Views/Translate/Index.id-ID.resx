@@ -18,8 +18,20 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
+      <data name="Both" xml:space="preserve">
+    <value>Kedua</value>
+  </data>
+  <data name="Empower your translations with local AI: Private, flexible, and faithful." xml:space="preserve">
     <value>Berdayakan terjemahan Anda dengan AI lokal: Pribadi, fleksibel, dan setia.</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Asli</value>
+  </data>
+  <data name="Original + Translation" xml:space="preserve">
+    <value>Asli + Terjemahan</value>
+  </data>
+  <data name="Original only" xml:space="preserve">
+    <value>Hanya Asli</value>
   </data>
   <data name="Please enter some content to translate." xml:space="preserve">
     <value>Silakan masukkan beberapa konten untuk diterjemahkan.</value>
@@ -36,11 +48,17 @@
   <data name="Translate" xml:space="preserve">
     <value>Terjemahkan</value>
   </data>
+  <data name="Translation" xml:space="preserve">
+    <value>Terjemahan</value>
+  </data>
   <data name="Translation failed: " xml:space="preserve">
     <value>Terjemahan gagal:</value>
   </data>
   <data name="Translation failed." xml:space="preserve">
     <value>Terjemahan gagal.</value>
+  </data>
+  <data name="Translation only" xml:space="preserve">
+    <value>Hanya Terjemahan</value>
   </data>
 
 </root>
