@@ -235,9 +235,13 @@
             }
 
             function scrollEditorToBottom(editor) {
-                editor.dispatch({
-                    effects: EditorView.scrollIntoView(editor.state.doc.length)
-                });
+                const scroll = editor.scrollDOM;
+                const nearBottom = scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight - 50;
+                if (nearBottom) {
+                    editor.dispatch({
+                        effects: EditorView.scrollIntoView(editor.state.doc.length)
+                    });
+                }
             }
 
             function updateTargetLanguage(content) {
