@@ -4,7 +4,7 @@ using Aiursoft.Translate.Services.FileStorage;
 
 using Aiursoft.Translate.Entities;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
+
 namespace Aiursoft.Translate.Tests.IntegrationTests;
 
 [TestClass]
