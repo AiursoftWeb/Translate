@@ -84,6 +84,8 @@ public class ViewModelArgsInjector(
         _ = localizer["Self Host"];
         _ = localizer["Tools"];
         _ = localizer["Translate"];
+    
+        _ = localizer["Delete Account"];
     }
 
     public void InjectSimple(
