@@ -25,7 +25,7 @@
     <PackageReference Include="Aiursoft.Canon.ScheduledTasks" Version="10.0.12" />
     <PackageReference Include="Aiursoft.ClickhouseLoggerProvider" Version="10.0.23" />
     <PackageReference Include="Aiursoft.DbTools.Switchable" Version="10.0.22" />
-    <PackageReference Include="Aiursoft.Dotlang.Shared" Version="10.0.42" />
+    <PackageReference Include="Aiursoft.Dotlang.Shared" Version="10.0.43" />
     <PackageReference Include="Aiursoft.Scanner" Version="10.0.10" />
     <PackageReference Include="Aiursoft.UiStack" Version="10.0.18" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.10" />
