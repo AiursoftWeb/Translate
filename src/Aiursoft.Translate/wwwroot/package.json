@@ -5,20 +5,16 @@
   "author": "Anduin Xue",
   "license": "MIT",
   "dependencies": {
-    "@aiursoft/uistack": "^1.0.8",
-    "@codemirror/lang-markdown": "^6.5.0",
-    "@codemirror/theme-one-dark": "^6.1.3",
+    "@aiursoft/uistack": "^1.0.11",
     "@fontsource/cascadia-code": "^5.2.3",
-    "@highlightjs/cdn-assets": "^11.11.1",
-    "codemirror": "^6.0.2",
-    "dropify": "^0.2.2",
-    "mathjax": "^3.2.2",
-    "mermaid": "^11.12.1"
+    "dropify": "^0.2.2"
+  },
+  "keep": {
+    "@aiursoft/uistack": "dist",
+    "@fontsource/cascadia-code": ".",
+    "dropify": "dist"
   },
   "scripts": {
-    "build": "esbuild src/codemirror-entry.js --bundle --format=iife --global-name=CM --minify --outfile=codemirror-bundle.js"
-  },
-  "devDependencies": {
-    "esbuild": "^0.28.0"
+    "build": "node build.mjs"
   }
 }
