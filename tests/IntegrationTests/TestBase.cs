@@ -1,6 +1,5 @@
 using System.Net;
 using System.Text.RegularExpressions;
-using Aiursoft.CSTools.Tools;
 using Aiursoft.DbTools;
 using Aiursoft.Translate.Entities;
 using static Aiursoft.WebTools.Extends;
@@ -9,7 +8,6 @@ namespace Aiursoft.Translate.Tests.IntegrationTests;
 
 public abstract class TestBase
 {
-    protected readonly int Port;
     protected readonly HttpClient Http;
     protected IHost? Server;
 
@@ -21,11 +19,7 @@ public abstract class TestBase
             CookieContainer = cookieContainer,
             AllowAutoRedirect = false
         };
-        Port = Network.GetAvailablePort();
-        Http = new HttpClient(handler)
-        {
-            BaseAddress = new Uri($"http://localhost:{Port}")
-        };
+        Http = new HttpClient(handler);
     }
 
     private string? _testPath;
@@ -34,12 +28,24 @@ public abstract class TestBase
     public virtual async Task CreateServer()
     {
         _testPath = Path.Combine(Path.GetTempPath(), "AiursoftTranslateTests", Guid.NewGuid().ToString());
+        using var reservation = new TestPortReservation();
+        Http.BaseAddress = new Uri($"http://localhost:{reservation.Port}");
         Server = await AppAsync<Startup>([
             $"Storage:Path={_testPath}"
-        ], port: Port);
-        await Server.UpdateDbAsync<TranslateDbContext>();
-        await Server.SeedAsync();
-        await Server.StartAsync();
+        ], port: reservation.Port);
+        try
+        {
+            reservation.ConfigureServer(Server);
+            await Server.UpdateDbAsync<TranslateDbContext>();
+            await Server.SeedAsync();
+            await Server.StartAsync();
+        }
+        catch
+        {
+            Server.Dispose();
+            Server = null;
+            throw;
+        }
     }
 
     [TestCleanup]
