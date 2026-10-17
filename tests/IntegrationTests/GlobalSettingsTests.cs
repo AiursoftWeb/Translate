@@ -4,7 +4,6 @@ using Aiursoft.Translate.Configuration;
 using Aiursoft.Translate.Entities;
 using Aiursoft.Translate.Services;
 using Microsoft.EntityFrameworkCore;
-using Aiursoft.CSTools.Tools;
 using static Aiursoft.WebTools.Extends;
 
 namespace Aiursoft.Translate.Tests.IntegrationTests;
@@ -136,11 +135,13 @@ public class GlobalSettingsTests : TestBase
     public async Task TestUpdateSettingOverriddenByConfig()
     {
         // Start a new server with an overridden setting
-        var port = Network.GetAvailablePort();
+        using var reservation = new TestPortReservation();
+        var port = reservation.Port;
         Environment.SetEnvironmentVariable($"GlobalSettings__{SettingsMap.BrandName}", "OverriddenBrand");
         try
         {
-            var server = await AppAsync<Startup>([], port: port);
+            await using var server = await AppAsync<Startup>([], port: port);
+            reservation.ConfigureServer(server);
             await server.UpdateDbAsync<TranslateDbContext>();
             await server.StartAsync();
 
@@ -163,7 +164,6 @@ public class GlobalSettingsTests : TestBase
             }
 
             await server.StopAsync();
-            await server.DisposeAsync();
         }
         finally
         {
