@@ -1,6 +1,14 @@
+using System.Runtime.CompilerServices;
+using System.Text;
+using Aiursoft.Canon;
+using Aiursoft.Dotlang.Shared;
+using Aiursoft.GptClient.Abstractions;
+using Aiursoft.GptClient.Services;
 using Aiursoft.Translate.Entities;
 using Aiursoft.Translate.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
 
 namespace Aiursoft.Translate.Tests.IntegrationTests;
 
@@ -11,77 +19,96 @@ public class TranslationCacheTests : TestBase
     public async Task TestCaching()
     {
         var dbContext = GetService<TranslateDbContext>();
-        var cacheService = GetService<TranslationCacheService>();
+        using var httpClient = new HttpClient();
+        var chatClient = new RecordingChatClient(httpClient);
+        var cacheService = CreateCacheService(dbContext, chatClient);
 
         const string content = "Hello World";
         const string targetLanguage = "zh-CN";
 
-        // First call - should go through to the engine (whatever it is)
-        // If the engine is not configured, it might throw, but let's see.
-        try 
-        {
-            var firstResult = await cacheService.GetOrTranslateAsync(content, targetLanguage);
-            Assert.IsFalse(string.IsNullOrEmpty(firstResult));
+        var firstResult = await cacheService.GetOrTranslateAsync(content, targetLanguage);
+        Assert.AreEqual("Translated content", firstResult);
+        Assert.AreEqual(1, chatClient.RequestCount);
 
-            // Check if it's in the DB
-            var cached = await dbContext.TranslationCaches.FirstOrDefaultAsync(c => c.SourceContent == content);
-            Assert.IsNotNull(cached);
-            Assert.AreEqual(targetLanguage, cached.TargetLanguage);
-            Assert.AreEqual(firstResult, cached.TranslatedContent);
+        var cached = await dbContext.TranslationCaches.SingleAsync(c => c.SourceContent == content);
+        Assert.AreEqual(targetLanguage, cached.TargetLanguage);
+        Assert.AreEqual(firstResult, cached.TranslatedContent);
 
-            // Second call - should return from cache
-            var secondResult = await cacheService.GetOrTranslateAsync(content, targetLanguage);
-            Assert.AreEqual(firstResult, secondResult);
-            
-            // Check count in DB
-            var count = await dbContext.TranslationCaches.CountAsync(c => c.SourceContent == content);
-            Assert.AreEqual(1, count);
-        }
-        catch (Exception ex)
-        {
-            // If the engine fails due to no API key, at least we know the logic was called.
-            // But we prefer it to succeed in tests.
-            Console.WriteLine($"Warning: Engine failed with message: {ex.Message}");
-            // If it failed because of the engine, we might not have a cache entry yet if it throws BEFORE saving.
-            // In my implementation, it saves AFTER calling the engine.
-        }
+        var secondResult = await cacheService.GetOrTranslateAsync(content, targetLanguage);
+        Assert.AreEqual(firstResult, secondResult);
+        Assert.AreEqual(1, chatClient.RequestCount, "A cache hit must not call the translation model again.");
+
+        var count = await dbContext.TranslationCaches.CountAsync(c => c.SourceContent == content);
+        Assert.AreEqual(1, count);
     }
 
     [TestMethod]
     public async Task TestStreamingCaching()
     {
         var dbContext = GetService<TranslateDbContext>();
-        var cacheService = GetService<TranslationCacheService>();
+        using var httpClient = new HttpClient();
+        var chatClient = new RecordingChatClient(httpClient);
+        var cacheService = CreateCacheService(dbContext, chatClient);
 
         const string content = "Streaming Hello";
         const string targetLanguage = "zh-CN";
 
-        try 
+        var firstResultBuilder = new StringBuilder();
+        await foreach (var part in cacheService.GetOrTranslateStreamAsync(content, targetLanguage))
         {
-            var firstResultBuilder = new System.Text.StringBuilder();
-            await foreach (var part in cacheService.GetOrTranslateStreamAsync(content, targetLanguage))
-            {
-                firstResultBuilder.Append(part);
-            }
-            var firstResult = firstResultBuilder.ToString();
-            Assert.IsFalse(string.IsNullOrEmpty(firstResult));
-
-            // Check if it's in the DB
-            var cached = await dbContext.TranslationCaches.FirstOrDefaultAsync(c => c.SourceContent == content);
-            Assert.IsNotNull(cached);
-            Assert.AreEqual(firstResult, cached.TranslatedContent);
-
-            // Second call - should return from cache
-            var secondResultBuilder = new System.Text.StringBuilder();
-            await foreach (var part in cacheService.GetOrTranslateStreamAsync(content, targetLanguage))
-            {
-                secondResultBuilder.Append(part);
-            }
-            Assert.AreEqual(firstResult, secondResultBuilder.ToString());
+            firstResultBuilder.Append(part);
         }
-        catch (Exception ex)
+        var firstResult = firstResultBuilder.ToString();
+        Assert.AreEqual("Translated content", firstResult);
+        Assert.AreEqual(1, chatClient.RequestCount);
+
+        var cached = await dbContext.TranslationCaches.SingleAsync(c => c.SourceContent == content);
+        Assert.AreEqual(targetLanguage, cached.TargetLanguage);
+        Assert.AreEqual(firstResult, cached.TranslatedContent);
+
+        var secondResultBuilder = new StringBuilder();
+        await foreach (var part in cacheService.GetOrTranslateStreamAsync(content, targetLanguage))
         {
-            Console.WriteLine($"Warning: Streaming engine failed with message: {ex.Message}");
+            secondResultBuilder.Append(part);
+        }
+        Assert.AreEqual(firstResult, secondResultBuilder.ToString());
+        Assert.AreEqual(1, chatClient.RequestCount, "A streaming cache hit must not call the translation model again.");
+        Assert.AreEqual(1, await dbContext.TranslationCaches.CountAsync(c => c.SourceContent == content));
+    }
+
+    private static TranslationCacheService CreateCacheService(TranslateDbContext dbContext, ChatClient chatClient)
+    {
+        var translator = new OllamaBasedTranslatorEngine(
+            Options.Create(new TranslateOptions { OllamaInstance = "http://localhost", OllamaModel = "test", OllamaToken = "test-token" }),
+            new RetryEngine(NullLogger<RetryEngine>.Instance),
+            NullLogger<OllamaBasedTranslatorEngine>.Instance,
+            chatClient,
+            new MarkdownShredder());
+        return new TranslationCacheService(dbContext, translator);
+    }
+
+    private sealed class RecordingChatClient(HttpClient httpClient)
+        : ChatClient(httpClient, NullLogger<ChatClient>.Instance)
+    {
+        public int RequestCount { get; private set; }
+
+        public override Task<CompletionData> AskModel(OpenAiRequestModel model,
+            string completionApiUrl, string? token, CancellationToken cancellationToken)
+        {
+            RequestCount++;
+            var completion = new CompletionData();
+            completion.SetContent("Translated content");
+            return Task.FromResult(completion);
+        }
+
+        public override async IAsyncEnumerable<string> AskModelStream(OpenAiRequestModel model,
+            string completionApiUrl, string? token,
+            [EnumeratorCancellation] CancellationToken cancellationToken)
+        {
+            RequestCount++;
+            yield return "```markdown\nTranslated ";
+            await Task.Yield();
+            yield return "content\n```";
         }
     }
 }
