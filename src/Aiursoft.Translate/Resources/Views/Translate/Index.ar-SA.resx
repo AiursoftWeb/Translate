@@ -36,6 +36,9 @@
   <data name="Please enter some content to translate." xml:space="preserve">
     <value>يرجى إدخال محتوى للترجمة.</value>
   </data>
+  <data name="Sign in, then translate again." xml:space="preserve">
+    <value>سجّل الدخول، ثم أعد الترجمة.</value>
+  </data>
   <data name="Stop" xml:space="preserve">
     <value>إيقاف</value>
   </data>
@@ -48,6 +51,9 @@
   <data name="Translate" xml:space="preserve">
     <value>ترجم</value>
   </data>
+  <data name="Translate again" xml:space="preserve">
+    <value>إعادة الترجمة</value>
+  </data>
   <data name="Translation" xml:space="preserve">
     <value>ترجمة</value>
   </data>
@@ -57,8 +63,17 @@
   <data name="Translation failed." xml:space="preserve">
     <value>فشل الترجمة.</value>
   </data>
+  <data name="Translation failed. Previous text has been kept." xml:space="preserve">
+    <value>فشل الترجمة. تم الاحتفاظ بالنص السابق.</value>
+  </data>
+  <data name="Translation interrupted. The result is incomplete." xml:space="preserve">
+    <value>تم إيقاف الترجمة. النتيجة غير مكتملة.</value>
+  </data>
   <data name="Translation only" xml:space="preserve">
     <value>الترجمة فقط</value>
+  </data>
+  <data name="Translation stopped. The result may be incomplete." xml:space="preserve">
+    <value>تم إيقاف الترجمة. قد يكون الناتج غير مكتمل.</value>
   </data>
 
 </root>

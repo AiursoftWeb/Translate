@@ -36,6 +36,9 @@
   <data name="Please enter some content to translate." xml:space="preserve">
     <value>請輸入內容以進行翻譯</value>
   </data>
+  <data name="Sign in, then translate again." xml:space="preserve">
+    <value>登入後，再重新翻譯。</value>
+  </data>
   <data name="Stop" xml:space="preserve">
     <value>停止</value>
   </data>
@@ -48,6 +51,9 @@
   <data name="Translate" xml:space="preserve">
     <value>翻譯</value>
   </data>
+  <data name="Translate again" xml:space="preserve">
+    <value>重新翻譯</value>
+  </data>
   <data name="Translation" xml:space="preserve">
     <value>翻譯</value>
   </data>
@@ -57,8 +63,17 @@
   <data name="Translation failed." xml:space="preserve">
     <value>翻譯失敗。</value>
   </data>
+  <data name="Translation failed. Previous text has been kept." xml:space="preserve">
+    <value>翻譯失敗。已保留先前文字。</value>
+  </data>
+  <data name="Translation interrupted. The result is incomplete." xml:space="preserve">
+    <value>翻譯已中斷。結果不完整。</value>
+  </data>
   <data name="Translation only" xml:space="preserve">
     <value>僅翻譯</value>
+  </data>
+  <data name="Translation stopped. The result may be incomplete." xml:space="preserve">
+    <value>翻譯已停止。結果可能不完整。</value>
   </data>
 
 </root>
