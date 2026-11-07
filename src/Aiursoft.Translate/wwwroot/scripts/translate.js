@@ -130,6 +130,19 @@
 
     let abortController = null;
     const btn = document.getElementById('translateBtn');
+    const feedback = document.getElementById('translation-feedback');
+    const feedbackText = document.getElementById('translation-feedback-text');
+    const retryBtn = document.getElementById('retryTranslationBtn');
+
+    function showFeedback(key, fallback) {
+        feedbackText.textContent = getLocalizedText(key, fallback);
+        feedback.classList.remove('d-none');
+    }
+
+    retryBtn.addEventListener('click', () => {
+        btn.focus();
+        btn.click();
+    });
 
     btn.addEventListener('click', function () {
         if (abortController) {
@@ -156,7 +169,7 @@
         btn.classList.remove('btn-primary');
         btn.classList.add('btn-danger');
 
-        setEditorValue(resultEditor, '');
+        retryBtn.disabled = true;
         let translatedFullContent = '';
         abortController = new AbortController();
 
@@ -172,19 +185,25 @@
             if (response.status === 401) {
                 const data = await response.json().catch(() => ({}));
                 if (data.requireLogin) {
+                    showFeedback('sign-in-required', 'Sign in, then translate again.');
                     window.open(config.dataset.loginUrl, '_blank');
                     return;
                 }
             }
             if (response.status === 429) {
-                alert(getLocalizedText('too-many-requests', '使用过于频繁，请稍等。'));
+                showFeedback('too-many-requests', 'Too many requests, please wait.');
                 return;
             }
             if (!response.ok) {
-                const errorText = await response.text();
-                alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + errorText);
-                setEditorValue(resultEditor, getLocalizedText('translation-failed', 'Translation failed.'));
-                return;
+                throw new Error('Translation request failed');
+            }
+
+            function appendTranslation(part) {
+                if (!part) return;
+                if (!translatedFullContent) feedback.classList.add('d-none');
+                translatedFullContent += part;
+                setEditorValue(resultEditor, translatedFullContent);
+                scrollEditorToBottom(resultEditor);
             }
 
             const reader = response.body.getReader();
@@ -192,16 +211,22 @@
             while (true) {
                 const { done, value } = await reader.read();
                 if (done) break;
-                translatedFullContent += decoder.decode(value, { stream: true });
-                setEditorValue(resultEditor, translatedFullContent);
-                scrollEditorToBottom(resultEditor);
+                appendTranslation(decoder.decode(value, { stream: true }));
             }
+            appendTranslation(decoder.decode());
+            if (!translatedFullContent) throw new Error('Empty translation');
         }).catch(error => {
-            if (error.name !== 'AbortError') {
-                alert(getLocalizedText('translation-failed-prefix', 'Translation failed: ') + error);
-                setEditorValue(resultEditor, getLocalizedText('translation-failed', 'Translation failed.'));
+            if (error.name === 'AbortError') {
+                showFeedback('translation-stopped', 'Translation stopped. The result may be incomplete.');
+            } else if (translatedFullContent) {
+                showFeedback('translation-interrupted', 'Translation interrupted. The result is incomplete.');
+            } else if (resultEditor.state.doc.length) {
+                showFeedback('previous-translation-kept', 'Translation failed. Previous text has been kept.');
+            } else {
+                showFeedback('translation-failed', 'Translation failed.');
             }
         }).finally(() => {
+            retryBtn.disabled = false;
             abortController = null;
             document.getElementById('btnTextNormal').classList.remove('d-none');
             document.getElementById('btnTextStop').classList.add('d-none');

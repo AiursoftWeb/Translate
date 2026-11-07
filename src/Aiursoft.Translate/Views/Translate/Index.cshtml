@@ -53,6 +53,13 @@
         </div>
     </div>
 
+    <div id="translation-feedback" class="d-none border-bottom px-3 py-2 bg-body-tertiary text-body-emphasis">
+        <div class="d-flex align-items-center flex-wrap gap-2">
+            <span id="translation-feedback-text" class="small" role="status" aria-live="polite" aria-atomic="true"></span>
+            <button type="button" id="retryTranslationBtn" class="btn btn-sm btn-primary">@Localizer["Translate again"]</button>
+        </div>
+    </div>
+
     <!-- Content Area -->
     <div class="row flex-grow-1 gx-0 content-area" style="height: calc(100vh - 120px); min-height: 400px; background-color: #F9FAFB;">
 
@@ -80,8 +87,11 @@
 <div id="loc-data" data-dark-mode="@isDarkMode.ToString().ToLowerInvariant()" data-translate-url="@Url.Action("TranslateStream", "Translate")" data-login-url="@Url.Action("Login", "Account")" hidden>
     <span data-key="enter-content">@Localizer["Please enter some content to translate."]</span>
     <span data-key="too-many-requests">@Localizer["Too many requests, please wait."]</span>
-    <span data-key="translation-failed-prefix">@Localizer["Translation failed: "]</span>
     <span data-key="translation-failed">@Localizer["Translation failed."]</span>
+    <span data-key="translation-interrupted">@Localizer["Translation interrupted. The result is incomplete."]</span>
+    <span data-key="previous-translation-kept">@Localizer["Translation failed. Previous text has been kept."]</span>
+    <span data-key="translation-stopped">@Localizer["Translation stopped. The result may be incomplete."]</span>
+    <span data-key="sign-in-required">@Localizer["Sign in, then translate again."]</span>
 </div>
 
 @* ReSharper disable once Razor.SectionNotResolved *@
