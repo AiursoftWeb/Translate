@@ -5,7 +5,7 @@
   "author": "Anduin Xue",
   "license": "MIT",
   "dependencies": {
-    "@fontsource/cascadia-code": "^5.2.3",
+    "@fontsource/cascadia-code": "^5.3.0",
     "dropify": "^0.2.2"
   },
   "keep": {
