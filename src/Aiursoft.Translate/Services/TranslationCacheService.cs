@@ -15,7 +15,7 @@ public class TranslationCacheService(TranslateDbContext dbContext, OllamaBasedTr
         var input = $"{content}|{targetLanguage}";
         var bytes = Encoding.UTF8.GetBytes(input);
         var hashBytes = SHA256.HashData(bytes);
-        return Convert.ToHexString(hashBytes).ToLower();
+        return Convert.ToHexString(hashBytes).ToLowerInvariant();
     }
 
     public async Task<string> GetOrTranslateAsync(string content, string targetLanguage)
