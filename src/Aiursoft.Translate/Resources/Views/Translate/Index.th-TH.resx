@@ -57,14 +57,14 @@
   <data name="Translation" xml:space="preserve">
     <value>คำแปล</value>
   </data>
-  <data name="Translation failed: " xml:space="preserve">
-    <value>การแปลล้มเหลว:</value>
-  </data>
   <data name="Translation failed." xml:space="preserve">
     <value>การแปลล้มเหลว</value>
   </data>
   <data name="Translation failed. Previous text has been kept." xml:space="preserve">
     <value>การแปลล้มเหลว ข้อความเดิมถูกเก็บรักษาไว้</value>
+  </data>
+  <data name="Translation failed: " xml:space="preserve">
+    <value>การแปลล้มเหลว:</value>
   </data>
   <data name="Translation interrupted. The result is incomplete." xml:space="preserve">
     <value>การแปลถูกขัดจังหวะ ผลลัพธ์ไม่สมบูรณ์</value>

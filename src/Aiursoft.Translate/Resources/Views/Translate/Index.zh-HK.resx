@@ -57,14 +57,14 @@
   <data name="Translation" xml:space="preserve">
     <value>譯文</value>
   </data>
-  <data name="Translation failed: " xml:space="preserve">
-    <value>翻譯失敗：</value>
-  </data>
   <data name="Translation failed." xml:space="preserve">
     <value>翻譯失敗。</value>
   </data>
   <data name="Translation failed. Previous text has been kept." xml:space="preserve">
     <value>翻譯失敗。已保留先前的文字。</value>
+  </data>
+  <data name="Translation failed: " xml:space="preserve">
+    <value>翻譯失敗：</value>
   </data>
   <data name="Translation interrupted. The result is incomplete." xml:space="preserve">
     <value>翻譯已中斷。結果不完整。</value>

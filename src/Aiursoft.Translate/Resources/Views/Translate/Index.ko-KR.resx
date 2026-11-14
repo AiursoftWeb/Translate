@@ -57,14 +57,14 @@
   <data name="Translation" xml:space="preserve">
     <value>번역</value>
   </data>
-  <data name="Translation failed: " xml:space="preserve">
-    <value>번역 실패:</value>
-  </data>
   <data name="Translation failed." xml:space="preserve">
     <value>번역에 실패했습니다.</value>
   </data>
   <data name="Translation failed. Previous text has been kept." xml:space="preserve">
     <value>번역에 실패했습니다. 이전 텍스트가 유지되었습니다.</value>
+  </data>
+  <data name="Translation failed: " xml:space="preserve">
+    <value>번역 실패:</value>
   </data>
   <data name="Translation interrupted. The result is incomplete." xml:space="preserve">
     <value>번역이 중단되었습니다. 결과가 불완전합니다.</value>

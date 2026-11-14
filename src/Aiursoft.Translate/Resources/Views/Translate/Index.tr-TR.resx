@@ -57,14 +57,14 @@
   <data name="Translation" xml:space="preserve">
     <value>Çeviri</value>
   </data>
-  <data name="Translation failed: " xml:space="preserve">
-    <value>Çeviri başarısız:</value>
-  </data>
   <data name="Translation failed." xml:space="preserve">
     <value>Çeviri başarısız oldu.</value>
   </data>
   <data name="Translation failed. Previous text has been kept." xml:space="preserve">
     <value>Çeviri başarısız oldu. Önceki metin korundu.</value>
+  </data>
+  <data name="Translation failed: " xml:space="preserve">
+    <value>Çeviri başarısız:</value>
   </data>
   <data name="Translation interrupted. The result is incomplete." xml:space="preserve">
     <value>Çeviri yarıda kesildi. Sonuç eksik.</value>

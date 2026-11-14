@@ -57,14 +57,14 @@
   <data name="Translation" xml:space="preserve">
     <value>अनुवाद</value>
   </data>
-  <data name="Translation failed: " xml:space="preserve">
-    <value>अनुवाद विफल:</value>
-  </data>
   <data name="Translation failed." xml:space="preserve">
     <value>अनुवाद विफल।</value>
   </data>
   <data name="Translation failed. Previous text has been kept." xml:space="preserve">
     <value>अनुवाद विफल रहा। पिछला पाठ बरकरार रखा गया है।</value>
+  </data>
+  <data name="Translation failed: " xml:space="preserve">
+    <value>अनुवाद विफल:</value>
   </data>
   <data name="Translation interrupted. The result is incomplete." xml:space="preserve">
     <value>अनुवाद बाधित हुआ। परिणाम अधूरा है।</value>
