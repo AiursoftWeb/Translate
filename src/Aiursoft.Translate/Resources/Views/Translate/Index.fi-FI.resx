@@ -57,14 +57,14 @@
   <data name="Translation" xml:space="preserve">
     <value>Käännös</value>
   </data>
-  <data name="Translation failed: " xml:space="preserve">
-    <value>Käännös epäonnistui:</value>
-  </data>
   <data name="Translation failed." xml:space="preserve">
     <value>Käännys epäonnistui.</value>
   </data>
   <data name="Translation failed. Previous text has been kept." xml:space="preserve">
     <value>Käännös epäonnistui. Aiempi teksti on säilytetty.</value>
+  </data>
+  <data name="Translation failed: " xml:space="preserve">
+    <value>Käännös epäonnistui:</value>
   </data>
   <data name="Translation interrupted. The result is incomplete." xml:space="preserve">
     <value>Käännös keskeytettiin. Tulos on epätäydellinen.</value>

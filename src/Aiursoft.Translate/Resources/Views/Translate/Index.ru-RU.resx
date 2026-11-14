@@ -57,14 +57,14 @@
   <data name="Translation" xml:space="preserve">
     <value>Перевод</value>
   </data>
-  <data name="Translation failed: " xml:space="preserve">
-    <value>Ошибка перевода:</value>
-  </data>
   <data name="Translation failed." xml:space="preserve">
     <value>Перевод не выполнен.</value>
   </data>
   <data name="Translation failed. Previous text has been kept." xml:space="preserve">
     <value>Перевод не удался. Сохранён предыдущий текст.</value>
+  </data>
+  <data name="Translation failed: " xml:space="preserve">
+    <value>Ошибка перевода:</value>
   </data>
   <data name="Translation interrupted. The result is incomplete." xml:space="preserve">
     <value>Перевод прерван. Результат неполный.</value>

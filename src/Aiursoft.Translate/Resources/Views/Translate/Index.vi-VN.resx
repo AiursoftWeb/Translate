@@ -57,14 +57,14 @@
   <data name="Translation" xml:space="preserve">
     <value>Bản dịch</value>
   </data>
-  <data name="Translation failed: " xml:space="preserve">
-    <value>Chuyển đổi thất bại:</value>
-  </data>
   <data name="Translation failed." xml:space="preserve">
     <value>Dịch thất bại.</value>
   </data>
   <data name="Translation failed. Previous text has been kept." xml:space="preserve">
     <value>Dịch thuật thất bại. Đã giữ nguyên văn bản trước đó.</value>
+  </data>
+  <data name="Translation failed: " xml:space="preserve">
+    <value>Chuyển đổi thất bại:</value>
   </data>
   <data name="Translation interrupted. The result is incomplete." xml:space="preserve">
     <value>Quá trình dịch bị gián đoạn. Kết quả không đầy đủ.</value>
