@@ -35,7 +35,7 @@ public class OidcDisplayNameTests : TestBase
         var services = new ServiceCollection();
         services.AddLogging();
         services.AddDataProtection();
-        services.AddTemplateAuth(configuration);
+        services.AddTranslateAuth(configuration);
         await using var provider = services.BuildServiceProvider();
         var options = provider.GetRequiredService<IOptionsMonitor<OpenIdConnectOptions>>()
             .Get(OpenIdConnectDefaults.AuthenticationScheme);
