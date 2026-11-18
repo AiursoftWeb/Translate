@@ -50,6 +50,8 @@
     <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)/wwwroot" Condition="'$(SkipFrontendBuild)' != 'true'" />
     <Error Condition="!Exists('wwwroot/node_modules/@aiursoft/uistack/dist/css/app.css') Or !Exists('wwwroot/node_modules/@aiursoft/uistack/dist/js/app.js')" Text="The UIStack npm assets are missing. Prepare the frontend before skipping its build." />
     <ItemGroup>
+      <!-- Web SDK packs static assets separately from ordinary Content items. -->
+      <_StaticWebAssetExcludedFromPack Include="$(MSBuildProjectDirectory)/wwwroot/node_modules/**/*" />
       <Content Remove="wwwroot/node_modules/**/*" />
       <Content Include="wwwroot/node_modules/**/*" Pack="false" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     </ItemGroup>
