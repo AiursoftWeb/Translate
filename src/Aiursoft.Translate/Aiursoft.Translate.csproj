@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <Version>10.0.123</Version>
+    <Version>10.0.124</Version>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Aiursoft.Translate</AssemblyName>
     <RootNamespace>Aiursoft.Translate</RootNamespace>
@@ -44,4 +44,16 @@
     <ProjectReference Include="..\Aiursoft.Translate.MySql\Aiursoft.Translate.MySql.csproj" />
     <ProjectReference Include="..\Aiursoft.Translate.Sqlite\Aiursoft.Translate.Sqlite.csproj" />
   </ItemGroup>
+  <Target Name="PrepareFrontendResources" BeforeTargets="AssignTargetPaths" Condition="'$(DesignTimeBuild)' != 'true'">
+    <!-- Docker supplies the slimmed assets from its Node build stage. -->
+    <Exec Command="npm ci" WorkingDirectory="$(MSBuildProjectDirectory)/wwwroot" Condition="'$(SkipFrontendBuild)' != 'true'" />
+    <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)/wwwroot" Condition="'$(SkipFrontendBuild)' != 'true'" />
+    <Error Condition="!Exists('wwwroot/node_modules/@aiursoft/uistack/dist/css/app.css') Or !Exists('wwwroot/node_modules/@aiursoft/uistack/dist/js/app.js')" Text="The UIStack npm assets are missing. Prepare the frontend before skipping its build." />
+    <ItemGroup>
+      <!-- Web SDK packs static assets separately from ordinary Content items. -->
+      <_StaticWebAssetExcludedFromPack Include="$(MSBuildProjectDirectory)/wwwroot/node_modules/**/*" />
+      <Content Remove="wwwroot/node_modules/**/*" />
+      <Content Include="wwwroot/node_modules/**/*" Pack="false" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
+  </Target>
 </Project>
