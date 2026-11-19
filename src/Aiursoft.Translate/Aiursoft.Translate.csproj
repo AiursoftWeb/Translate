@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <Version>10.0.124</Version>
+    <Version>10.0.125</Version>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Aiursoft.Translate</AssemblyName>
     <RootNamespace>Aiursoft.Translate</RootNamespace>
@@ -48,7 +48,7 @@
     <!-- Docker supplies the slimmed assets from its Node build stage. -->
     <Exec Command="npm ci" WorkingDirectory="$(MSBuildProjectDirectory)/wwwroot" Condition="'$(SkipFrontendBuild)' != 'true'" />
     <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)/wwwroot" Condition="'$(SkipFrontendBuild)' != 'true'" />
-    <Error Condition="!Exists('wwwroot/node_modules/@aiursoft/uistack/dist/css/app.css') Or !Exists('wwwroot/node_modules/@aiursoft/uistack/dist/js/app.js')" Text="The UIStack npm assets are missing. Prepare the frontend before skipping its build." />
+    <Error Condition="!Exists('wwwroot/node_modules/@aiursoft/uistack/dist/css/app.css') Or !Exists('wwwroot/node_modules/@aiursoft/uistack/dist/js/app.js')" Text="The UIStack npm assets are missing. Prepare the frontend before skipping its build."></Error>
     <ItemGroup>
       <!-- Web SDK packs static assets separately from ordinary Content items. -->
       <_StaticWebAssetExcludedFromPack Include="$(MSBuildProjectDirectory)/wwwroot/node_modules/**/*" />
