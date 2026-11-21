@@ -15,7 +15,6 @@ using Aiursoft.Translate.MySql;
 using Aiursoft.Translate.Services.Authentication;
 using Aiursoft.Translate.Services.BackgroundJobs;
 using Aiursoft.Translate.Sqlite;
-using Aiursoft.UiStack;
 using Aiursoft.UiStack.Layout;
 using Aiursoft.UiStack.Navigation;
 using Microsoft.AspNetCore.Mvc.Razor;
