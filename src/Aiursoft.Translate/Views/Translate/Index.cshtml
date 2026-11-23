@@ -3,6 +3,8 @@
 @using Aiursoft.WebTools.OfficialPlugins
 @model IndexViewModel
 @{
+    var cultureOptions = Context.RequestServices.GetKeyedService<IReadOnlyDictionary<string, string>>(typeof(LocalizationPlugin))
+        ?? LocalizationPlugin.SupportedCultures;
     var isDarkMode = Context.Request.Cookies[ThemeController.ThemeCookieKey] == true.ToString();
 }
 
@@ -21,7 +23,7 @@
         <div class="flex-grow-1 px-4 text-center d-flex align-items-center justify-content-center gap-2 flex-nowrap">
             <label class="form-label mb-0 d-none d-md-inline">@Localizer["Target Language:"]</label>
             <select id="targetLanguage" class="form-select form-select-sm shadow-sm" style="max-width: 250px;">
-                @foreach (var culture in LocalizationPlugin.SupportedCultures)
+                @foreach (var culture in cultureOptions)
                 {
                     <option value="@culture.Key">@culture.Value (@culture.Key)</option>
                 }
