@@ -24,6 +24,8 @@ public abstract class TestBase
 
     private string? _testPath;
 
+    protected virtual string[] ServerArguments => [];
+
     [TestInitialize]
     public virtual async Task CreateServer()
     {
@@ -31,6 +33,7 @@ public abstract class TestBase
         using var reservation = new TestPortReservation();
         Http.BaseAddress = new Uri($"http://localhost:{reservation.Port}");
         Server = await AppAsync<Startup>([
+            ..ServerArguments,
             $"Storage:Path={_testPath}"
         ], port: reservation.Port);
         try
